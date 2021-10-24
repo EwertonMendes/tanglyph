@@ -5,6 +5,8 @@
         v-model="userText"
         class="pa-5"
         :rules="rules"
+        :counter="maxLength"
+        :maxlength="maxLength"
         outlined
         clearable
         placeholder="Enter your text here and see the magic happens ✨✨"
@@ -25,11 +27,22 @@
         <v-text-field :value="style.value" class="pt-3" outlined></v-text-field>
       </v-card-text>
       <v-card-actions>
-        <v-btn text>
-          Copy
+        <v-spacer></v-spacer>
+        <v-btn color="primary lighten-2" @click="copyText(style.value)">
+          <v-icon>mdi-content-copy</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
+
+    <v-snackbar v-model="showNotification" :timeout="timeout">
+      Copied {{copiedText}} to the clipboard
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="blue" text v-bind="attrs" @click="showNotification = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -39,8 +52,11 @@ import Constants from "../components/common/constants";
 export default {
   data: () => ({
     rules: [(value) => (value || "").length <= 35 || "Max 35 characters"],
+    maxLength: 35,
     userText: "",
-    modifiedText: "",
+    copiedText: "",
+    showNotification: false,
+    timeout: 3500,
     styles: [
       { name: "Future Alien", map: Constants.mapsNames.FUTUREALIEN, value: "" },
       { name: "Squiggle 1", map: Constants.mapsNames.SQUIGGLE, value: "" },
@@ -50,9 +66,17 @@ export default {
       { name: "Squiggle 5", map: Constants.mapsNames.SQUIGGLE5, value: "" },
       { name: "Squiggle 6", map: Constants.mapsNames.SQUIGGLE6, value: "" },
       { name: "Asian Style 1", map: Constants.mapsNames.ASIANSTYLE, value: "" },
-      { name: "Asian Style 2", map: Constants.mapsNames.ASIANSTYLE2, value: "" },
+      {
+        name: "Asian Style 2",
+        map: Constants.mapsNames.ASIANSTYLE2,
+        value: "",
+      },
       { name: "Squares", map: Constants.mapsNames.SQUARES, value: "" },
-      { name: "Inverted Squares", map: Constants.mapsNames.INVERTEDSQUARES, value: "" },
+      {
+        name: "Inverted Squares",
+        map: Constants.mapsNames.INVERTEDSQUARES,
+        value: "",
+      },
       { name: "Monospace", map: Constants.mapsNames.MONOSPACE, value: "" },
       { name: "Bold", map: Constants.mapsNames.BOLD, value: "" },
       { name: "Bold & Italic", map: Constants.mapsNames.BOLDITALIC, value: "" },
@@ -65,7 +89,11 @@ export default {
       { name: "Upper Angles", map: Constants.mapsNames.UPPERANGLES, value: "" },
       { name: "Subscript", map: Constants.mapsNames.SUBSCRIPT, value: "" },
       { name: "Superscript", map: Constants.mapsNames.SUPERSCRIPT, value: "" },
-      { name: "Double Struck", map: Constants.mapsNames.DOUBLESTRUCK, value: "" },
+      {
+        name: "Double Struck",
+        map: Constants.mapsNames.DOUBLESTRUCK,
+        value: "",
+      },
       { name: "Medieval", map: Constants.mapsNames.MEDIEVAL, value: "" },
       { name: "Cursive", map: Constants.mapsNames.CURSIVE, value: "" },
       { name: "Old English", map: Constants.mapsNames.OLDENGLISH, value: "" },
@@ -75,6 +103,9 @@ export default {
 
   watch: {
     userText: function(value) {
+      if(!value) {
+        return;
+      }
       this.styles.forEach((style) => {
         style.value = this.convertTextToGlyph({
           baseText: value,
@@ -90,7 +121,7 @@ export default {
     convertTextToGlyph({ baseText, mapName }) {
       let newText = "";
       [...baseText].forEach((letter) => {
-        if(!glyphMaps[mapName][letter.toLowerCase()]) {
+        if (!glyphMaps[mapName][letter.toLowerCase()]) {
           newText += letter;
         } else {
           newText += glyphMaps[mapName][letter.toLowerCase()];
@@ -98,6 +129,14 @@ export default {
       });
       return newText;
     },
+    copyText(text) {
+      navigator.clipboard.writeText(text);
+      this.copiedText = text;
+      this.showToast();
+    },
+    showToast() {
+      this.showNotification = true;
+    }
   },
 };
 </script>
