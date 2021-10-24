@@ -90,7 +90,11 @@ export default {
     convertTextToGlyph({ baseText, mapName }) {
       let newText = "";
       [...baseText].forEach((letter) => {
-        newText += glyphMaps[mapName][letter.toLowerCase()];
+        if(!glyphMaps[mapName][letter.toLowerCase()]) {
+          newText += letter;
+        } else {
+          newText += glyphMaps[mapName][letter.toLowerCase()];
+        }
       });
       return newText;
     },
