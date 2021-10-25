@@ -10,7 +10,7 @@
         width="40"
       />
 
-      <h3 ref="titleText">Text Decorator</h3>
+      <h3>{{ title }}</h3>
     </div>
 
     <v-spacer></v-spacer>
@@ -22,15 +22,17 @@
 </template>
 
 <script>
+import glyphMaps from "../common/glyphMaps";
+import Constants from "../common/constants";
+
 export default {
-  name: "Test",
+  name: "Header",
   components: {},
 
   data() {
     return {
-      fontFamilies: ["Creepy", "Retro", "Helvetica", "Comic"],
-      lastIndex: 0,
       isDarkMode: false,
+      title: "Text Decorator",
     };
   },
 
@@ -46,18 +48,29 @@ export default {
 
   methods: {
     generateRandom() {
-      var num = Math.floor(Math.random() * (this.fontFamilies.length - 1));
-      if (num === this.lastIndex) {
-        return this.generateRandom();
-      }
-      this.lastIndex = num;
+      const mapsObjLength = Object.keys(glyphMaps).length - 1;
+      var num = Math.floor(Math.random() * mapsObjLength);
       return num;
     },
+
     changeFontFamily() {
-      setInterval(() => {
-        const index = this.generateRandom();
-        this.$refs.titleText.style.fontFamily = this.fontFamilies[index];
-      }, 3000);
+      const index = this.generateRandom();
+      const newTitle = this.convertTextToGlyph({
+        baseText: this.title,
+        mapName: Object.values(Constants.mapsNames)[index],
+      });
+      this.title = newTitle;
+    },
+
+    convertTextToGlyph({ baseText, mapName }) {
+      let newText = "";
+      [...baseText].forEach((letter) => {
+        if (!glyphMaps[mapName][letter.toLowerCase()]) {
+          return (newText += letter);
+        }
+        return (newText += glyphMaps[mapName][letter.toLowerCase()]);
+      });
+      return newText;
     },
   },
 };
