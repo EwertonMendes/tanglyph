@@ -1,72 +1,95 @@
 <template>
   <div>
-    <v-text-field
-      v-model="userText"
-      class="pt-5"
-      :rules="rules"
-      :counter="maxLength"
-      :maxlength="maxLength"
-      rounded
-      solo
-      outlined
-      clearable
-      placeholder="Enter your text here and see the magic happens ✨✨"
-    ></v-text-field>
+    <v-container class="scroll-y">
+      <v-btn
+        v-scroll="onScroll"
+        v-show="showBackToTopButton"
+        fab
+        dark
+        fixed
+        bottom
+        right
+        color="primary"
+        @click="toTop"
+      >
+        <v-icon>mdi-arrow-up</v-icon>
+      </v-btn>
+      <v-text-field
+        v-model="userText"
+        class="pt-5"
+        :rules="rules"
+        :counter="maxLength"
+        :maxlength="maxLength"
+        rounded
+        solo
+        outlined
+        clearable
+        placeholder="Enter your text here and see the magic happens ✨✨"
+      ></v-text-field>
 
-    <v-card
-      elevation="5"
-      v-for="style in styles"
-      :key="style.name"
-      class="mt-5"
-      outlined
-      shaped
-    >
-      <v-card-text>
-        <h3 class="pb-2">{{ style.name }}</h3>
-        <v-divider class="pb-2"></v-divider>
-        <v-text-field
-          :value="style.value"
-          class="pt-3"
-          readonly
-          dense
-          outlined
-        ></v-text-field>
-      </v-card-text>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-tooltip top>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              color="primary lighten-2"
-              text
-              @click="copyText(style.value)"
-              v-bind="attrs"
-              v-on="on"
-            >
-              <v-icon>mdi-content-copy</v-icon>
-            </v-btn>
-          </template>
-          <span>Copy to clipboard</span>
-        </v-tooltip>
-      </v-card-actions>
-    </v-card>
+      <v-card
+        elevation="5"
+        v-for="style in styles"
+        :key="style.name"
+        class="mt-5"
+        outlined
+        shaped
+      >
+        <v-card-text>
+          <h3 class="pb-2">{{ style.name }}</h3>
+          <v-divider class="pb-2"></v-divider>
+          <v-text-field
+            :value="style.value"
+            class="pt-3"
+            readonly
+            dense
+            outlined
+          ></v-text-field>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-tooltip top>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn color="primary lighten-2" text v-bind="attrs" v-on="on">
+                <v-icon color="orange">mdi-creation</v-icon>
+              </v-btn>
+            </template>
+            <span>Decorate Text</span>
+          </v-tooltip>
+          <v-tooltip top>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                color="primary lighten-2"
+                text
+                @click="copyText(style.value)"
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon>mdi-content-copy</v-icon>
+              </v-btn>
+            </template>
+            <span>Copy to clipboard</span>
+          </v-tooltip>
+        </v-card-actions>
+      </v-card>
 
-    <v-snackbar v-model="showNotification" :timeout="timeout">
-      Copied
-      {{ copiedText }}
-      to the clipboard
+      <v-snackbar v-model="showNotification" :timeout="timeout">
+        Copied
+        {{ copiedText }}
+        to the clipboard
 
-      <template v-slot:action="{ attrs }">
-        <v-btn
-          color="blue"
-          text
-          v-bind="attrs"
-          @click="showNotification = false"
-        >
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="blue"
+            text
+            v-bind="attrs"
+            @click="showNotification = false"
+          >
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
+    </v-container>
   </div>
 </template>
 
@@ -82,6 +105,7 @@ export default {
     copiedText: "",
     showNotification: false,
     timeout: 3500,
+    showBackToTopButton: false,
     styles: [
       {
         name: "Future Alien",
@@ -243,8 +267,6 @@ export default {
     },
   },
 
-  mounted() {},
-
   methods: {
     copyText(text) {
       navigator.clipboard.writeText(text);
@@ -254,6 +276,14 @@ export default {
     showToast() {
       this.showNotification = true;
     },
+    onScroll (e) {
+      if (typeof window === 'undefined') return
+      const top = window.pageYOffset || e.target.scrollTop || 0
+      this.showBackToTopButton = top > 20
+    },
+    toTop () {
+      this.$vuetify.goTo(0)
+    }
   },
 };
 </script>
