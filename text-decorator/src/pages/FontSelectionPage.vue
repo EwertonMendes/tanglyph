@@ -71,8 +71,9 @@
 </template>
 
 <script>
-import glyphMaps from "../components/common/glyphMaps";
 import Constants from "../components/common/constants";
+import helpers from "../components/common/helpers";
+
 export default {
   data: () => ({
     rules: [(value) => (value || "").length <= 35 || "Max 35 characters"],
@@ -234,7 +235,7 @@ export default {
         return;
       }
       this.styles.forEach((style) => {
-        style.value = this.convertTextToGlyph({
+        style.value = helpers.convertTextToGlyph({
           baseText: value,
           mapName: style.map,
         });
@@ -245,17 +246,6 @@ export default {
   mounted() {},
 
   methods: {
-    convertTextToGlyph({ baseText, mapName }) {
-      let newText = "";
-      [...baseText].forEach((letter) => {
-        if (!glyphMaps[mapName][letter.toLowerCase()]) {
-          newText += letter;
-        } else {
-          newText += glyphMaps[mapName][letter.toLowerCase()];
-        }
-      });
-      return newText;
-    },
     copyText(text) {
       navigator.clipboard.writeText(text);
       this.copiedText = text;

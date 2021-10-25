@@ -23,6 +23,7 @@
 
 <script>
 import glyphMaps from "../common/glyphMaps";
+import helpers from "../common/helpers";
 import Constants from "../common/constants";
 
 export default {
@@ -55,22 +56,11 @@ export default {
 
     changeFontFamily() {
       const index = this.generateRandom();
-      const newTitle = this.convertTextToGlyph({
+      const newTitle = helpers.convertTextToGlyph({
         baseText: this.title,
         mapName: Object.values(Constants.mapsNames)[index],
       });
       this.title = newTitle;
-    },
-
-    convertTextToGlyph({ baseText, mapName }) {
-      let newText = "";
-      [...baseText].forEach((letter) => {
-        if (!glyphMaps[mapName][letter.toLowerCase()]) {
-          return (newText += letter);
-        }
-        return (newText += glyphMaps[mapName][letter.toLowerCase()]);
-      });
-      return newText;
     },
   },
 };
