@@ -1,17 +1,17 @@
 <template>
   <div>
-    <v-card elevation="5">
-      <v-text-field
-        v-model="userText"
-        class="pa-5"
-        :rules="rules"
-        :counter="maxLength"
-        :maxlength="maxLength"
-        outlined
-        clearable
-        placeholder="Enter your text here and see the magic happens ✨✨"
-      ></v-text-field>
-    </v-card>
+    <v-text-field
+      v-model="userText"
+      class="pt-5"
+      :rules="rules"
+      :counter="maxLength"
+      :maxlength="maxLength"
+      rounded
+      solo
+      outlined
+      clearable
+      placeholder="Enter your text here and see the magic happens ✨✨"
+    ></v-text-field>
 
     <v-card
       elevation="5"
@@ -24,7 +24,13 @@
       <v-card-text>
         <h3 class="pb-2">{{ style.name }}</h3>
         <v-divider class="pb-2"></v-divider>
-        <v-text-field :value="style.value" class="pt-3" outlined></v-text-field>
+        <v-text-field
+          :value="style.value"
+          class="pt-3"
+          readonly
+          dense
+          outlined
+        ></v-text-field>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -32,6 +38,7 @@
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               color="primary lighten-2"
+              text
               @click="copyText(style.value)"
               v-bind="attrs"
               v-on="on"
@@ -221,6 +228,9 @@ export default {
   watch: {
     userText: function(value) {
       if (!value) {
+        this.styles.forEach((style) => {
+          style.value = "";
+        });
         return;
       }
       this.styles.forEach((style) => {
