@@ -15,9 +15,16 @@
 
     <v-spacer></v-spacer>
     <v-icon class="pa-3">
-      mdi-white-balance-sunny
+      {{ themeIcon }}
     </v-icon>
-    <v-switch v-model="isDarkMode" color="orange" class="mt-5"></v-switch>
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on, attrs }">
+        <div v-bind="attrs" v-on="on" style="width:min-content;">
+          <v-switch v-model="isDarkMode" color="orange" class="mt-5"></v-switch>
+        </div>
+      </template>
+      <span>Change Theme</span>
+    </v-tooltip>
   </v-app-bar>
 </template>
 
@@ -34,17 +41,19 @@ export default {
     return {
       isDarkMode: false,
       title: "Text Decorator",
+      themeIcon: this.getThemeIcon(),
     };
   },
 
   watch: {
     isDarkMode() {
       this.$vuetify.theme.isDark = this.isDarkMode;
+      this.themeIcon = this.getThemeIcon();
     },
   },
 
   mounted() {
-    this.changeFontFamily();
+    this.changeFont();
   },
 
   methods: {
@@ -54,13 +63,18 @@ export default {
       return num;
     },
 
-    changeFontFamily() {
+    changeFont() {
       const index = this.generateRandom();
       const newTitle = helpers.convertTextToGlyph({
         baseText: this.title,
         mapName: Object.values(Constants.mapsNames)[index],
       });
       this.title = newTitle;
+    },
+    getThemeIcon() {
+      return this.isDarkMode
+        ? "mdi-white-balance-sunny"
+        : "mdi-moon-waning-crescent";
     },
   },
 };
