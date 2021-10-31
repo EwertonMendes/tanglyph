@@ -3,6 +3,8 @@
     <Header></Header>
     <v-main>
       <v-flex ma-5>
+        <!-- toast -->
+        <vtoast ref="vtoast" />
         <FontSelectionPage></FontSelectionPage>
       </v-flex>
     </v-main>
@@ -11,7 +13,8 @@
 
 <script>
 import Header from "./components/layout/AppHeader";
-import FontSelectionPage from "./pages/FontSelectionPage.vue";
+import FontSelectionPage from "./pages/FontSelectionPage";
+import vtoast from "./components/ui/Snackbar";
 
 export default {
   name: "App",
@@ -19,10 +22,11 @@ export default {
   components: {
     Header,
     FontSelectionPage,
+    vtoast,
   },
 
-  data: () => ({
-    //
-  }),
+  mounted() {
+    this.$root.vtoast = this.$refs.vtoast;
+  },
 };
 </script>

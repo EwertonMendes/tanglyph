@@ -72,23 +72,6 @@
           </v-tooltip>
         </v-card-actions>
       </v-card>
-
-      <v-snackbar v-model="showNotification" :timeout="timeout">
-        Copied
-        {{ copiedText }}
-        to the clipboard
-
-        <template v-slot:action="{ attrs }">
-          <v-btn
-            color="blue"
-            text
-            v-bind="attrs"
-            @click="showNotification = false"
-          >
-            Close
-          </v-btn>
-        </template>
-      </v-snackbar>
     </v-container>
   </div>
 </template>
@@ -274,16 +257,21 @@ export default {
       this.showToast();
     },
     showToast() {
-      this.showNotification = true;
+      this.$root.vtoast.show({
+        message: `Copied ${this.copiedText} to the clipboard`,
+        color: "success",
+        icon: "mdi-check",
+        timer: 3000,
+      });
     },
-    onScroll (e) {
-      if (typeof window === 'undefined') return
-      const top = window.pageYOffset || e.target.scrollTop || 0
-      this.showBackToTopButton = top > 20
+    onScroll(e) {
+      if (typeof window === "undefined") return;
+      const top = window.pageYOffset || e.target.scrollTop || 0;
+      this.showBackToTopButton = top > 20;
     },
-    toTop () {
-      this.$vuetify.goTo(0)
-    }
+    toTop() {
+      this.$vuetify.goTo(0);
+    },
   },
 };
 </script>
