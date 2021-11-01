@@ -48,14 +48,67 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-tooltip top>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn color="primary lighten-2" text v-bind="attrs" v-on="on">
-                <v-icon color="orange">mdi-creation</v-icon>
-              </v-btn>
+          <v-dialog
+            persistent
+            transition="dialog-bottom-transition"
+            max-width="800"
+          >
+            <template v-slot:activator="{ on: dialog, attrs: dialogAttrs }">
+              <v-tooltip top>
+                <template
+                  v-slot:activator="{ on: tooltip, attrs: tootlipAttrs }"
+                >
+                  <v-btn
+                    color="primary lighten-2"
+                    text
+                    v-bind="{ ...dialogAttrs, ...tootlipAttrs }"
+                    v-on="{ ...dialog, ...tooltip }"
+                  >
+                    <v-icon color="orange">mdi-creation</v-icon>
+                  </v-btn>
+                </template>
+                <span>Decorate Text</span>
+              </v-tooltip>
             </template>
-            <span>Decorate Text</span>
-          </v-tooltip>
+            <template v-slot:default="dialog">
+              <v-card>
+                <v-toolbar color="primary" dark>Decorate Text</v-toolbar>
+                <v-container align-self-center="true">
+                  <v-card-text>
+                    <v-text-field
+                      v-model="userText"
+                      class="pt-5"
+                      :rules="rules"
+                      :counter="maxLength"
+                      :maxlength="maxLength"
+                      rounded
+                      solo
+                      outlined
+                      clearable
+                      placeholder="Enter your text here and see the magic happens ✨✨"
+                    ></v-text-field>
+                  </v-card-text>
+                  <v-card-text>
+                    <h3 class="pb-2">{{ style.name }}</h3>
+                    <v-divider class="pb-2"></v-divider>
+                    <v-text-field
+                      :value="style.value"
+                      class="pt-3"
+                      readonly
+                      dense
+                      outlined
+                    ></v-text-field>
+                  </v-card-text>
+                  <div class="column_wrapper" v-for="decoration in decorations" :key="decoration.name">
+                    <v-btn text @click="applyDecoration(decoration.template, style)">{{decoration.template}}</v-btn>
+                  </div>
+                </v-container>
+                <v-card-actions class="justify-end">
+                  <v-btn text @click="dialog.value = false">Close</v-btn>
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
           <v-tooltip top>
             <template v-slot:activator="{ on, attrs }">
               <v-btn
@@ -79,6 +132,7 @@
 <script>
 import Constants from "../components/common/constants";
 import helpers from "../components/common/helpers";
+import esrever from 'esrever';
 
 export default {
   data: () => ({
@@ -231,6 +285,44 @@ export default {
         value: "",
       },
     ],
+    decorations: [
+      {
+        name: 'hearts',
+        template: '❤️💖💘💝💕💞'
+      },
+      {
+        name: 'foods',
+        template: '🍉🍇🍓🍌'
+      },
+      {
+        name: 'balh',
+        template: '🍉🍇🍓🍌'
+      },
+      {
+        name: 'asd',
+        template: '🍉🍇🍓🍌'
+      },
+      {
+        name: 'qwe',
+        template: '🍉🍇🍓🍌'
+      },
+      {
+        name: 'tye',
+        template: '🍉🍇🍓🍌'
+      },
+      {
+        name: 'foosdfsdds',
+        template: '🍉🍇🍓🍌'
+      },
+      {
+        name: 'sdfcxv',
+        template: '🍉🍇🍓🍌'
+      },
+      {
+        name: 'jjytuytr',
+        template: '🍉🍇🍓🍌'
+      }
+    ]
   }),
 
   watch: {
@@ -264,6 +356,9 @@ export default {
         timer: 3000,
       });
     },
+    applyDecoration(decorationText, textStyle) {
+      textStyle.value = `${decorationText}${textStyle.value}${esrever.reverse(decorationText)}`;
+    },
     onScroll(e) {
       if (typeof window === "undefined") return;
       const top = window.pageYOffset || e.target.scrollTop || 0;
@@ -276,4 +371,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.column-wrapper {
+  column-count: 2;
+}
+</style>
