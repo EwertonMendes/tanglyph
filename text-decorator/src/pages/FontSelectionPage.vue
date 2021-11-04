@@ -99,9 +99,7 @@
                       outlined
                     ></v-text-field>
                   </v-card-text>
-                  <div class="column_wrapper" v-for="decoration in decorations" :key="decoration.name">
-                    <v-btn text @click="applyDecoration(decoration.template, style)">{{decoration.template}}</v-btn>
-                  </div>
+                  <decoration-selector @decorate="applyDecoration($event, style)"></decoration-selector>
                 </v-container>
                 <v-card-actions class="justify-end">
                   <v-btn text @click="dialog.value = false">Close</v-btn>
@@ -131,10 +129,15 @@
 
 <script>
 import Constants from "../components/common/constants";
+import DecorationSelector from "../components/ui/DecorationSelector";
 import helpers from "../components/common/helpers";
-import esrever from 'esrever';
+import esrever from "esrever";
 
 export default {
+  components: {
+    DecorationSelector,
+  },
+
   data: () => ({
     rules: [(value) => (value || "").length <= 35 || "Max 35 characters"],
     maxLength: 35,
@@ -285,44 +288,6 @@ export default {
         value: "",
       },
     ],
-    decorations: [
-      {
-        name: 'hearts',
-        template: '❤️💖💘💝💕💞'
-      },
-      {
-        name: 'foods',
-        template: '🍉🍇🍓🍌'
-      },
-      {
-        name: 'balh',
-        template: '🍉🍇🍓🍌'
-      },
-      {
-        name: 'asd',
-        template: '🍉🍇🍓🍌'
-      },
-      {
-        name: 'qwe',
-        template: '🍉🍇🍓🍌'
-      },
-      {
-        name: 'tye',
-        template: '🍉🍇🍓🍌'
-      },
-      {
-        name: 'foosdfsdds',
-        template: '🍉🍇🍓🍌'
-      },
-      {
-        name: 'sdfcxv',
-        template: '🍉🍇🍓🍌'
-      },
-      {
-        name: 'jjytuytr',
-        template: '🍉🍇🍓🍌'
-      }
-    ]
   }),
 
   watch: {
@@ -357,7 +322,9 @@ export default {
       });
     },
     applyDecoration(decorationText, textStyle) {
-      textStyle.value = `${decorationText}${textStyle.value}${esrever.reverse(decorationText)}`;
+      textStyle.value = `${decorationText}${textStyle.value}${esrever.reverse(
+        decorationText
+      )}`;
     },
     onScroll(e) {
       if (typeof window === "undefined") return;
@@ -370,9 +337,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.column-wrapper {
-  column-count: 2;
-}
-</style>

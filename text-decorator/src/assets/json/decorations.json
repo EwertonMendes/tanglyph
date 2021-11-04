@@ -1,0 +1,46 @@
+[
+  {
+    "name": "hearts",
+    "template": "💙💜💛🧡❤️️"
+  },
+  {
+    "name": "foods",
+    "template": "🍉🍇🍓🍌"
+  },
+  {
+    "name": "squares",
+    "template": "▀▄▀▄▀▄"
+  },
+  {
+    "name": "bar code",
+    "template": "▌│█║▌║▌║"
+  },
+  {
+    "name": "music face",
+    "template": "ღ(¯`◕‿◕´¯) ♫ ♪ ♫"
+  },
+  {
+    "name": "tune",
+    "template": "ıllıllı"
+  },
+  {
+    "name": "flower and dots",
+    "template": "✿◉●•◦"
+  },
+  {
+    "name": "flowers",
+    "template": "✿❀❁❂❃"
+  },
+  {
+    "name": "cubes",
+    "template": "❏   ❐   ❑   ❒"
+  },
+  {
+    "name": "special day",
+    "template": ".•°¤*(¯`★´¯)*¤°"
+  },
+  {
+    "name": "bored",
+    "template": "(-_-)"
+  }
+]
