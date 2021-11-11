@@ -1,46 +1,57 @@
 [
   {
     "name": "hearts",
-    "template": "💙💜💛🧡❤️️"
+    "template": "💙💜💛🧡❤️️",
+    "canReverse": true
   },
   {
     "name": "foods",
-    "template": "🍉🍇🍓🍌"
+    "template": "🍉🍇🍓🍌",
+    "canReverse": true
   },
   {
     "name": "squares",
-    "template": "▀▄▀▄▀▄"
+    "template": "▀▄▀▄▀▄",
+    "canReverse": true
   },
   {
     "name": "bar code",
-    "template": "▌│█║▌║▌║"
+    "template": "▌│█║▌║▌║",
+    "canReverse": false
   },
   {
     "name": "music face",
-    "template": "ღ(¯`◕‿◕´¯) ♫ ♪ ♫"
+    "template": "ღ(¯`◕‿◕´¯) ♫ ♪ ♫",
+    "canReverse": false
   },
   {
     "name": "tune",
-    "template": "ıllıllı"
+    "template": "ıllıllı",
+    "canReverse": true
   },
   {
     "name": "flower and dots",
-    "template": "✿◉●•◦"
+    "template": "✿◉●•◦",
+    "canReverse": true
   },
   {
     "name": "flowers",
-    "template": "✿❀❁❂❃"
+    "template": "✿❀❁❂❃",
+    "canReverse": true
   },
   {
     "name": "cubes",
-    "template": "❏   ❐   ❑   ❒"
+    "template": "❏   ❐   ❑   ❒",
+    "canReverse": true
   },
   {
     "name": "special day",
-    "template": ".•°¤*(¯`★´¯)*¤°"
+    "template": ".•°¤*(¯`★´¯)*¤°",
+    "canReverse": false
   },
   {
     "name": "bored",
-    "template": "(-_-)"
+    "template": "(-_-)",
+    "canReverse": false
   }
 ]

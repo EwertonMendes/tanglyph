@@ -99,7 +99,9 @@
                       outlined
                     ></v-text-field>
                   </v-card-text>
-                  <decoration-selector @decorate="applyDecoration($event, style)"></decoration-selector>
+                  <decoration-selector
+                    @decorate="applyDecoration($event, style)"
+                  ></decoration-selector>
                 </v-container>
                 <v-card-actions class="justify-end">
                   <v-btn text @click="dialog.value = false">Close</v-btn>
@@ -128,7 +130,7 @@
 </template>
 
 <script>
-import Constants from "../components/common/constants";
+import constants from "../components/common/constants";
 import DecorationSelector from "../components/ui/DecorationSelector";
 import helpers from "../components/common/helpers";
 import esrever from "esrever";
@@ -149,142 +151,142 @@ export default {
     styles: [
       {
         name: "Future Alien",
-        map: Constants.mapsNames.FUTUREALIEN,
+        map: constants.mapsNames.FUTUREALIEN,
         value: "",
       },
       {
         name: "Squiggle 1",
-        map: Constants.mapsNames.SQUIGGLE,
+        map: constants.mapsNames.SQUIGGLE,
         value: "",
       },
       {
         name: "Squiggle 2",
-        map: Constants.mapsNames.SQUIGGLE2,
+        map: constants.mapsNames.SQUIGGLE2,
         value: "",
       },
       {
         name: "Squiggle 3",
-        map: Constants.mapsNames.SQUIGGLE3,
+        map: constants.mapsNames.SQUIGGLE3,
         value: "",
       },
       {
         name: "Squiggle 4",
-        map: Constants.mapsNames.SQUIGGLE4,
+        map: constants.mapsNames.SQUIGGLE4,
         value: "",
       },
       {
         name: "Squiggle 5",
-        map: Constants.mapsNames.SQUIGGLE5,
+        map: constants.mapsNames.SQUIGGLE5,
         value: "",
       },
       {
         name: "Squiggle 6",
-        map: Constants.mapsNames.SQUIGGLE6,
+        map: constants.mapsNames.SQUIGGLE6,
         value: "",
       },
       {
         name: "Asian Style 1",
-        map: Constants.mapsNames.ASIANSTYLE,
+        map: constants.mapsNames.ASIANSTYLE,
         value: "",
       },
       {
         name: "Asian Style 2",
-        map: Constants.mapsNames.ASIANSTYLE2,
+        map: constants.mapsNames.ASIANSTYLE2,
         value: "",
       },
       {
         name: "Squares",
-        map: Constants.mapsNames.SQUARES,
+        map: constants.mapsNames.SQUARES,
         value: "",
       },
       {
         name: "Inverted Squares",
-        map: Constants.mapsNames.INVERTEDSQUARES,
+        map: constants.mapsNames.INVERTEDSQUARES,
         value: "",
       },
       {
         name: "Monospace",
-        map: Constants.mapsNames.MONOSPACE,
+        map: constants.mapsNames.MONOSPACE,
         value: "",
       },
       {
         name: "Bold",
-        map: Constants.mapsNames.BOLD,
+        map: constants.mapsNames.BOLD,
         value: "",
       },
       {
         name: "Bold & Italic",
-        map: Constants.mapsNames.BOLDITALIC,
+        map: constants.mapsNames.BOLDITALIC,
         value: "",
       },
       {
         name: "Bold Sans",
-        map: Constants.mapsNames.BOLDSANS,
+        map: constants.mapsNames.BOLDSANS,
         value: "",
       },
       {
         name: "Currency",
-        map: Constants.mapsNames.CURRENCY,
+        map: constants.mapsNames.CURRENCY,
         value: "",
       },
       {
         name: "Symbols",
-        map: Constants.mapsNames.SYMBOLS,
+        map: constants.mapsNames.SYMBOLS,
         value: "",
       },
       {
         name: "Greek",
-        map: Constants.mapsNames.GREEK,
+        map: constants.mapsNames.GREEK,
         value: "",
       },
       {
         name: "Ben Text",
-        map: Constants.mapsNames.BENTTEXT,
+        map: constants.mapsNames.BENTTEXT,
         value: "",
       },
       {
         name: "Italic",
-        map: Constants.mapsNames.ITALIC,
+        map: constants.mapsNames.ITALIC,
         value: "",
       },
       {
         name: "Upper Angles",
-        map: Constants.mapsNames.UPPERANGLES,
+        map: constants.mapsNames.UPPERANGLES,
         value: "",
       },
       {
         name: "Subscript",
-        map: Constants.mapsNames.SUBSCRIPT,
+        map: constants.mapsNames.SUBSCRIPT,
         value: "",
       },
       {
         name: "Superscript",
-        map: Constants.mapsNames.SUPERSCRIPT,
+        map: constants.mapsNames.SUPERSCRIPT,
         value: "",
       },
       {
         name: "Double Struck",
-        map: Constants.mapsNames.DOUBLESTRUCK,
+        map: constants.mapsNames.DOUBLESTRUCK,
         value: "",
       },
       {
         name: "Medieval",
-        map: Constants.mapsNames.MEDIEVAL,
+        map: constants.mapsNames.MEDIEVAL,
         value: "",
       },
       {
         name: "Cursive",
-        map: Constants.mapsNames.CURSIVE,
+        map: constants.mapsNames.CURSIVE,
         value: "",
       },
       {
         name: "Old English",
-        map: Constants.mapsNames.OLDENGLISH,
+        map: constants.mapsNames.OLDENGLISH,
         value: "",
       },
       {
         name: "Wide Text",
-        map: Constants.mapsNames.WIDETEXT,
+        map: constants.mapsNames.WIDETEXT,
         value: "",
       },
     ],
@@ -321,10 +323,12 @@ export default {
         timer: 3000,
       });
     },
-    applyDecoration(decorationText, textStyle) {
-      textStyle.value = `${decorationText}${textStyle.value}${esrever.reverse(
-        decorationText
-      )}`;
+    applyDecoration(decorationObj, textStyle) {
+      textStyle.value = `${decorationObj.text}${textStyle.value}${
+        decorationObj.canReverse
+          ? esrever.reverse(decorationObj.text)
+          : decorationObj.text
+      }`;
     },
     onScroll(e) {
       if (typeof window === "undefined") return;

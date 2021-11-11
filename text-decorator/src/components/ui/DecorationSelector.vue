@@ -6,7 +6,7 @@
           v-for="decoration in page.contents"
           :key="decoration.name"
         >
-          <v-btn text @click="applyDecoration(decoration.template)">{{
+          <v-btn text @click="applyDecoration({text: decoration.template, canReverse: decoration.canReverse})">{{
             decoration.template
           }}</v-btn>
         </div>
@@ -37,8 +37,8 @@ export default {
     },
   },
   methods: {
-    applyDecoration(decorationText) {
-      this.$emit('decorate', decorationText)
+    applyDecoration(decorationObj) {
+      this.$emit('decorate', decorationObj)
     },
   },
 };
