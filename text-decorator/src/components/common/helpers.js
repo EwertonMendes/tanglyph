@@ -1,18 +1,23 @@
 import glyphMaps from "./glyphMaps";
 
+function _normalizeLetter(letter) {
+    return letter
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
 export default {
   convertTextToGlyph({ baseText, mapName }) {
     let newText = "";
     [...baseText].forEach((letter) => {
-      if (!glyphMaps[mapName][letter.toLowerCase()]) {
-        const normalizedLetter = letter
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "");
+      const glyphLetter = glyphMaps.getLetter({letter, charMap: mapName});
+      if (!glyphLetter) {
+        const normalizedLetter = _normalizeLetter(letter)
 
         return (newText +=
-          glyphMaps[mapName][normalizedLetter.toLowerCase()] ?? letter);
+          glyphMaps.getLetter({ letter: normalizedLetter.toLowerCase(), charMap: mapName }) ?? letter);
       }
-      newText += glyphMaps[mapName][letter.toLowerCase()];
+      newText += glyphLetter;
     });
     return newText;
   },

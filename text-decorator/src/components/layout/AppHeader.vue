@@ -58,7 +58,7 @@ export default {
 
   methods: {
     generateRandom() {
-      const mapsObjLength = Object.keys(glyphMaps).length - 1;
+      const mapsObjLength = glyphMaps.mapCount() - 1;
       var num = Math.floor(Math.random() * mapsObjLength);
       return num;
     },

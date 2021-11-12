@@ -44,86 +44,92 @@
             readonly
             dense
             outlined
-          ></v-text-field>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-dialog
-            persistent
-            transition="dialog-bottom-transition"
-            max-width="800"
           >
-            <template v-slot:activator="{ on: dialog, attrs: dialogAttrs }">
-              <v-tooltip top>
-                <template
-                  v-slot:activator="{ on: tooltip, attrs: tootlipAttrs }"
+            <template v-slot:append>
+              <v-row class="pt-2">
+                <v-dialog
+                  persistent
+                  transition="dialog-bottom-transition"
+                  max-width="800"
                 >
-                  <v-btn
-                    color="primary lighten-2"
-                    text
-                    v-bind="{ ...dialogAttrs, ...tootlipAttrs }"
-                    v-on="{ ...dialog, ...tooltip }"
+                  <template
+                    v-slot:activator="{ on: dialog, attrs: dialogAttrs }"
                   >
-                    <v-icon color="orange">mdi-creation</v-icon>
-                  </v-btn>
-                </template>
-                <span>Decorate Text</span>
-              </v-tooltip>
+                    <v-tooltip top>
+                      <template
+                        v-slot:activator="{ on: tooltip, attrs: tootlipAttrs }"
+                      >
+                        <v-btn
+                          color="primary lighten-2"
+                          plain
+                          text
+                          v-bind="{ ...dialogAttrs, ...tootlipAttrs }"
+                          v-on="{ ...dialog, ...tooltip }"
+                        >
+                          <v-icon color="orange">mdi-creation</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>Decorate Text</span>
+                    </v-tooltip>
+                  </template>
+                  <template v-slot:default="dialog">
+                    <v-card>
+                      <v-toolbar color="primary" dark>Decorate Text</v-toolbar>
+                      <v-container align-self-center="true">
+                        <v-card-text>
+                          <v-text-field
+                            v-model="userText"
+                            class="pt-5"
+                            :rules="rules"
+                            :counter="maxLength"
+                            :maxlength="maxLength"
+                            rounded
+                            solo
+                            outlined
+                            clearable
+                            placeholder="Enter your text here and see the magic happens ✨✨"
+                          ></v-text-field>
+                        </v-card-text>
+                        <v-card-text>
+                          <h3 class="pb-2">{{ style.name }}</h3>
+                          <v-divider class="pb-2"></v-divider>
+                          <v-text-field
+                            :value="style.value"
+                            class="pt-3"
+                            readonly
+                            dense
+                            outlined
+                          ></v-text-field>
+                        </v-card-text>
+                        <decoration-selector
+                          @decorate="applyDecoration($event, style)"
+                        ></decoration-selector>
+                      </v-container>
+                      <v-card-actions class="justify-end">
+                        <v-btn text @click="dialog.value = false">Close</v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </template>
+                </v-dialog>
+                <v-tooltip top>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                      color="primary lighten-2"
+                      plain
+                      text
+                      @click="copyText(style.value)"
+                      v-bind="attrs"
+                      v-on="on"
+                    >
+                      <v-icon>mdi-content-copy</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>Copy to clipboard</span>
+                </v-tooltip>
+              </v-row>
             </template>
-            <template v-slot:default="dialog">
-              <v-card>
-                <v-toolbar color="primary" dark>Decorate Text</v-toolbar>
-                <v-container align-self-center="true">
-                  <v-card-text>
-                    <v-text-field
-                      v-model="userText"
-                      class="pt-5"
-                      :rules="rules"
-                      :counter="maxLength"
-                      :maxlength="maxLength"
-                      rounded
-                      solo
-                      outlined
-                      clearable
-                      placeholder="Enter your text here and see the magic happens ✨✨"
-                    ></v-text-field>
-                  </v-card-text>
-                  <v-card-text>
-                    <h3 class="pb-2">{{ style.name }}</h3>
-                    <v-divider class="pb-2"></v-divider>
-                    <v-text-field
-                      :value="style.value"
-                      class="pt-3"
-                      readonly
-                      dense
-                      outlined
-                    ></v-text-field>
-                  </v-card-text>
-                  <decoration-selector
-                    @decorate="applyDecoration($event, style)"
-                  ></decoration-selector>
-                </v-container>
-                <v-card-actions class="justify-end">
-                  <v-btn text @click="dialog.value = false">Close</v-btn>
-                </v-card-actions>
-              </v-card>
-            </template>
-          </v-dialog>
-          <v-tooltip top>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                color="primary lighten-2"
-                text
-                @click="copyText(style.value)"
-                v-bind="attrs"
-                v-on="on"
-              >
-                <v-icon>mdi-content-copy</v-icon>
-              </v-btn>
-            </template>
-            <span>Copy to clipboard</span>
-          </v-tooltip>
-        </v-card-actions>
+          </v-text-field>
+        </v-card-text>
       </v-card>
     </v-container>
   </div>
