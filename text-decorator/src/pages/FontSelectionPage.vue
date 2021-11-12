@@ -147,8 +147,8 @@ export default {
   },
 
   data: () => ({
-    rules: [(value) => (value || "").length <= 35 || "Max 35 characters"],
-    maxLength: 35,
+    rules: [(value) => (value || "").length <= 50 || "Max 50 characters"],
+    maxLength: 50,
     userText: "",
     copiedText: "",
     showNotification: false,
