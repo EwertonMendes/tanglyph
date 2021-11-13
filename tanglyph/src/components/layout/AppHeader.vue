@@ -34,9 +34,9 @@
 </template>
 
 <script>
-import glyphMaps from "../common/glyphMaps";
-import helpers from "../common/helpers";
-import Constants from "../common/constants";
+import glyphMaps from "../../common/glyphMaps";
+import helpers from "../../common/helpers";
+import Constants from "../../common/constants";
 
 export default {
   name: "Header",
