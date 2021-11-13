@@ -24,7 +24,8 @@
         shaped
       >
         <v-card-text>
-          <h3 class="pb-2">{{ style.name }}</h3>
+          <decoration-input v-bind:glyphStyle="style" :userText="userText" @input="updateUserText"></decoration-input>
+          <!--<h3 class="pb-2">{{ style.name }}</h3>
           <v-divider class="pb-2"></v-divider>
           <v-text-field
             :value="style.value"
@@ -105,7 +106,7 @@
                 </v-tooltip>
               </v-row>
             </template>
-          </v-text-field>
+          </v-text-field>-->
         </v-card-text>
       </v-card>
     </v-container>
@@ -114,14 +115,13 @@
 
 <script>
 import constants from "../components/common/constants";
-import DecorationSelector from "../components/ui/DecorationSelector";
+import DecorationInput from "../components/ui/DecorationInput";
 import MainText from "../components/ui/MainText";
 import helpers from "../components/common/helpers";
-import esrever from "esrever";
 
 export default {
   components: {
-    DecorationSelector,
+    DecorationInput,
     MainText,
   },
 
@@ -295,25 +295,8 @@ export default {
   },
 
   methods: {
-    copyText(text) {
-      navigator.clipboard.writeText(text);
-      this.copiedText = text;
-      this.showToast();
-    },
-    showToast() {
-      this.$root.vtoast.show({
-        message: `Copied ${this.copiedText} to the clipboard`,
-        color: "success",
-        icon: "mdi-check",
-        timer: 3000,
-      });
-    },
-    applyDecoration(decorationObj, textStyle) {
-      textStyle.value = `${decorationObj.text}${textStyle.value}${
-        decorationObj.canReverse
-          ? esrever.reverse(decorationObj.text)
-          : decorationObj.text
-      }`;
+    updateUserText(value) {
+      this.userText = value;
     },
     onScroll(e) {
       if (typeof window === "undefined") return;
