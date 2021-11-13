@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="primary" dark class="mb-12">
+  <v-app-bar app :color="$vuetify.theme.themes[theme].appBar" elevate-on-scroll class="mb-12">
     <div class="d-flex align-center">
       <v-img
         alt="Tanglyph Logo"
@@ -25,7 +25,7 @@
     <v-tooltip bottom>
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on" style="width:min-content;">
-          <v-switch v-model="isDarkMode" color="orange" class="mt-5"></v-switch>
+          <v-switch v-model="isDarkMode" color="primary" class="mt-5"></v-switch>
         </div>
       </template>
       <span>Change Theme</span>
@@ -49,12 +49,16 @@ export default {
       themeIcon: '',
     };
   },
-
+  computed: {
+    theme() {
+      return this.$vuetify.theme.dark ? "dark" : "light";
+    },
+  },
   watch: {
+    
     isDarkMode(value) {
       this.$cookie.set("darkTheme", value);
       this.$vuetify.theme.isDark = value;
-      
       this.themeIcon = this.getThemeIcon();
     },
   },

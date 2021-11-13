@@ -20,8 +20,6 @@
         v-for="style in styles"
         :key="style.name"
         class="mt-5"
-        outlined
-        shaped
       >
         <v-card-text>
           <decoration-input
@@ -231,3 +229,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.v-card {
+  border-left: 5px solid var(--v-primary-base) !important;
+}
+</style>

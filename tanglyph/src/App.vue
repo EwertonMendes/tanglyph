@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :style="{ background: $vuetify.theme.themes[theme].background }">
     <Header></Header>
     <v-main>
       <v-flex ma-5>
@@ -25,7 +25,13 @@ export default {
     Header,
     FontSelectionPage,
     vtoast,
-    CookieAdvisor
+    CookieAdvisor,
+  },
+
+  computed: {
+    theme() {
+      return this.$vuetify.theme.dark ? "dark" : "light";
+    },
   },
 
   mounted() {
