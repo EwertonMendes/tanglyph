@@ -2,7 +2,7 @@
   <v-app-bar app color="primary" dark class="mb-12">
     <div class="d-flex align-center">
       <v-img
-        alt="Text Decorator Logo"
+        alt="Tanglyph Logo"
         class="shrink mr-2"
         contain
         src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
@@ -11,6 +11,11 @@
       />
 
       <h3>{{ title }}</h3>
+      <v-divider vertical class="pl-3"></v-divider>
+      <div class="pl-3">
+        {{subTitle}}
+      </div>
+      
     </div>
 
     <v-spacer></v-spacer>
@@ -35,21 +40,27 @@ import Constants from "../common/constants";
 
 export default {
   name: "Header",
-  components: {},
 
   data() {
     return {
-      isDarkMode: false,
-      title: "Text Decorator",
-      themeIcon: this.getThemeIcon(),
+      isDarkMode: this.$cookie.get("darkTheme") === 'true' ? true : false,
+      title: "Tanglyph",
+      subTitle: "The best and easiest text decorator",
+      themeIcon: '',
     };
   },
 
   watch: {
-    isDarkMode() {
-      this.$vuetify.theme.isDark = this.isDarkMode;
+    isDarkMode(value) {
+      this.$cookie.set("darkTheme", value);
+      this.$vuetify.theme.isDark = value;
+      
       this.themeIcon = this.getThemeIcon();
     },
+  },
+  created() {
+    this.themeIcon = this.getThemeIcon();
+    this.$vuetify.theme.isDark = this.isDarkMode;
   },
 
   mounted() {

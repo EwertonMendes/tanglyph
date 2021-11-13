@@ -1,5 +1,5 @@
 {
-  "name": "text-decorator",
+  "name": "tanglyph",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
     "core-js": "^3.6.5",
     "esrever": "^0.2.0",
     "vue": "^2.6.11",
+    "vue-cookie": "^1.1.4",
     "vuetify": "^2.4.0"
   },
   "devDependencies": {
