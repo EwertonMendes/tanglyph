@@ -24,89 +24,11 @@
         shaped
       >
         <v-card-text>
-          <decoration-input v-bind:glyphStyle="style" :userText="userText" @input="updateUserText"></decoration-input>
-          <!--<h3 class="pb-2">{{ style.name }}</h3>
-          <v-divider class="pb-2"></v-divider>
-          <v-text-field
-            :value="style.value"
-            class="pt-3"
-            readonly
-            dense
-            outlined
-          >
-            <template v-slot:append>
-              <v-row class="pt-2">
-                <v-dialog
-                  persistent
-                  transition="dialog-bottom-transition"
-                  max-width="800"
-                >
-                  <template
-                    v-slot:activator="{ on: dialog, attrs: dialogAttrs }"
-                  >
-                    <v-tooltip top>
-                      <template
-                        v-slot:activator="{ on: tooltip, attrs: tootlipAttrs }"
-                      >
-                        <v-btn
-                          color="primary lighten-2"
-                          plain
-                          text
-                          v-bind="{ ...dialogAttrs, ...tootlipAttrs }"
-                          v-on="{ ...dialog, ...tooltip }"
-                        >
-                          <v-icon color="orange">mdi-creation</v-icon>
-                        </v-btn>
-                      </template>
-                      <span>Decorate Text</span>
-                    </v-tooltip>
-                  </template>
-                  <template v-slot:default="dialog">
-                    <v-card>
-                      <v-toolbar color="primary" dark>Decorate Text</v-toolbar>
-                      <v-container align-self-center="true">
-                        <v-card-text>
-                          <main-text v-model="userText"></main-text>
-                        </v-card-text>
-                        <v-card-text>
-                          <h3 class="pb-2">{{ style.name }}</h3>
-                          <v-divider class="pb-2"></v-divider>
-                          <v-text-field
-                            :value="style.value"
-                            class="pt-3"
-                            readonly
-                            dense
-                            outlined
-                          ></v-text-field>
-                        </v-card-text>
-                        <decoration-selector
-                          @decorate="applyDecoration($event, style)"
-                        ></decoration-selector>
-                      </v-container>
-                      <v-card-actions class="justify-end">
-                        <v-btn text @click="dialog.value = false">Close</v-btn>
-                      </v-card-actions>
-                    </v-card>
-                  </template>
-                </v-dialog>
-                <v-tooltip top>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                      color="primary lighten-2"
-                      plain
-                      text
-                      @click="copyText(style.value)"
-                      v-bind="attrs"
-                      v-on="on"
-                    >
-                      <v-icon>mdi-content-copy</v-icon>
-                    </v-btn>
-                  </template>
-                  <span>Copy to clipboard</span>
-                </v-tooltip>
-              </v-row>
-            </template>
-          </v-text-field>-->
+          <decoration-input
+            v-bind:glyphStyle="style"
+            :userText="userText"
+            @input="updateUserText"
+          ></decoration-input>
         </v-card-text>
       </v-card>
     </v-container>

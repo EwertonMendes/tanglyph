@@ -12,6 +12,7 @@
     "esrever": "^0.2.0",
     "vue": "^2.6.11",
     "vue-cookie": "^1.1.4",
+    "vue-cookie-law": "^1.13.3",
     "vuetify": "^2.4.0"
   },
   "devDependencies": {

@@ -8,11 +8,13 @@
         <FontSelectionPage></FontSelectionPage>
       </v-flex>
     </v-main>
+    <cookie-advisor></cookie-advisor>
   </v-app>
 </template>
 
 <script>
 import Header from "./components/layout/AppHeader";
+import CookieAdvisor from "./components/layout/CookieAdvisor";
 import FontSelectionPage from "./pages/FontSelectionPage";
 import vtoast from "./components/ui/Snackbar";
 
@@ -23,6 +25,7 @@ export default {
     Header,
     FontSelectionPage,
     vtoast,
+    CookieAdvisor
   },
 
   mounted() {
