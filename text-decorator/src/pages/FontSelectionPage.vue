@@ -14,19 +14,7 @@
       >
         <v-icon>mdi-arrow-up</v-icon>
       </v-btn>
-      <v-text-field
-        v-model="userText"
-        class="pt-5"
-        :rules="rules"
-        :counter="maxLength"
-        :maxlength="maxLength"
-        rounded
-        solo
-        outlined
-        clearable
-        placeholder="Enter your text here and see the magic happens ✨✨"
-      ></v-text-field>
-
+      <main-text v-model="userText"></main-text>
       <v-card
         elevation="5"
         v-for="style in styles"
@@ -77,18 +65,7 @@
                       <v-toolbar color="primary" dark>Decorate Text</v-toolbar>
                       <v-container align-self-center="true">
                         <v-card-text>
-                          <v-text-field
-                            v-model="userText"
-                            class="pt-5"
-                            :rules="rules"
-                            :counter="maxLength"
-                            :maxlength="maxLength"
-                            rounded
-                            solo
-                            outlined
-                            clearable
-                            placeholder="Enter your text here and see the magic happens ✨✨"
-                          ></v-text-field>
+                          <main-text v-model="userText"></main-text>
                         </v-card-text>
                         <v-card-text>
                           <h3 class="pb-2">{{ style.name }}</h3>
@@ -138,12 +115,14 @@
 <script>
 import constants from "../components/common/constants";
 import DecorationSelector from "../components/ui/DecorationSelector";
+import MainText from "../components/ui/MainText";
 import helpers from "../components/common/helpers";
 import esrever from "esrever";
 
 export default {
   components: {
     DecorationSelector,
+    MainText,
   },
 
   data: () => ({
