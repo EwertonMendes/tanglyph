@@ -1,26 +1,38 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col v-for="page in pagination" :key="page.pageNumber">
-        <div
-          v-for="decoration in page.contents"
-          :key="decoration.name"
-        >
-          <v-btn text @click="applyDecoration({text: decoration.template, canReverse: decoration.canReverse})">{{
-            decoration.template
-          }}</v-btn>
-        </div>
-      </v-col>
-    </v-row>
+    <v-window v-model="step" show-arrows>
+      <v-window-item
+        v-for="page in pagination"
+        :key="page.pageNumber"
+        :value="page.pageNumber"
+        class="window"
+      >
+        <v-row v-for="decoration in page.contents" :key="decoration.name">
+          <v-col align="center">
+            <v-btn
+              text
+              @click="
+                applyDecoration({
+                  text: decoration.template,
+                  canReverse: decoration.canReverse,
+                })
+              "
+              >{{ decoration.template }}</v-btn
+            >
+          </v-col>
+        </v-row>
+      </v-window-item>
+    </v-window>
   </v-container>
 </template>
 
 <script>
-import decorations from '../../assets/json/decorations.json';
+import decorations from "../../assets/json/decorations.json";
 export default {
   data: () => ({
-    pageSize: 2,
-    decorations: decorations
+    pageSize: 4,
+    decorations: decorations,
+    step: 0,
   }),
   computed: {
     pagination: function() {
@@ -31,6 +43,7 @@ export default {
           index * this.pageSize,
           pageNum * this.pageSize
         );
+        if (!contents.length) return;
         finalObject.push({ pageNumber: pageNum, contents: contents });
       });
       return finalObject;
@@ -38,8 +51,14 @@ export default {
   },
   methods: {
     applyDecoration(decorationObj) {
-      this.$emit('decorate', decorationObj)
+      this.$emit("decorate", decorationObj);
     },
   },
 };
 </script>
+
+<style scoped>
+.window {
+  height: 220px;
+}
+</style>
