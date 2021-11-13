@@ -36,10 +36,10 @@
 </template>
 
 <script>
-import constants from "../components/common/constants";
+import constants from "../common/constants";
 import DecorationInput from "../components/ui/DecorationInput";
 import MainText from "../components/ui/MainText";
-import helpers from "../components/common/helpers";
+import helpers from "../common/helpers";
 
 export default {
   components: {
