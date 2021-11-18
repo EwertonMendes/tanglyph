@@ -2,13 +2,7 @@
   <div>
     <h3 class="pb-2">{{ glyphStyle.name }}</h3>
     <v-divider class="pb-2"></v-divider>
-    <v-text-field
-      :value="glyphStyle.value"
-      class="pt-3"
-      readonly
-      dense
-      outlined
-    >
+    <v-text-field :value="fullTextValue" class="pt-3" readonly dense outlined>
       <template v-slot:append>
         <v-row class="pt-2">
           <v-dialog
@@ -39,13 +33,22 @@
                 <v-toolbar color="primary" dark>Decorate Text</v-toolbar>
                 <v-container align-self-center="true">
                   <v-card-text>
-                    <main-text v-model="text"></main-text>
+                    <main-text></main-text>
                   </v-card-text>
                   <v-card-text>
-                    <h3 class="pb-2">{{ glyphStyle.name }}</h3>
+                    <v-row>
+                      <v-col>
+                        <h3 class="pb-2">{{ glyphStyle.name }}</h3>
+                        <v-checkbox
+                          v-model="replaceDecoration"
+                          label="Replace Decoration"
+                        ></v-checkbox>
+                      </v-col>
+                    </v-row>
+
                     <v-divider class="pb-2"></v-divider>
                     <v-text-field
-                      :value="glyphStyle.value"
+                      :value="fullTextValue"
                       class="pt-3"
                       readonly
                       dense
@@ -53,7 +56,7 @@
                     ></v-text-field>
                   </v-card-text>
                   <decoration-selector
-                    @decorate="applyDecoration($event, glyphStyle)"
+                    @decorate="applyDecoration"
                   ></decoration-selector>
                 </v-container>
                 <v-card-actions class="justify-end">
@@ -68,7 +71,7 @@
                 color="primary lighten-2"
                 plain
                 text
-                @click="copyText(glyphStyle.value)"
+                @click="copyText()"
                 v-bind="attrs"
                 v-on="on"
               >
@@ -89,50 +92,65 @@ import MainText from "./MainText";
 
 export default {
   name: "DecorationInput",
+
   components: {
     DecorationSelector,
-    MainText
+    MainText,
   },
+
   props: {
-    glyphStyle: {
-      type: Object,
-      required: true,
-    },
-    userText: {
+    glyphName: {
       type: String,
       required: true,
     },
   },
+
+  data() {
+    return {
+      replaceDecoration: false,
+    };
+  },
+
   computed: {
-    text: {
+    glyphStyle() {
+      return this.$store.getters.getStyleByName(this.glyphName);
+    },
+    fullTextValue: {
       get() {
-        return this.userText;
+        return this.glyphStyle.value;
       },
-      set(val) {
-        this.$emit('input', val);
-      }
+      set(value) {
+        this.$store.commit("setStyleValue", {
+          name: this.glyphName,
+          value: value,
+        });
+      },
     },
   },
   methods: {
-    copyText(text) {
-      navigator.clipboard.writeText(text);
-      this.copiedText = text;
+    copyText() {
+      navigator.clipboard.writeText(this.glyphStyle.value);
       this.showToast();
     },
     showToast() {
       this.$root.vtoast.show({
-        message: `Copied ${this.copiedText} to the clipboard`,
+        message: `Copied ${this.glyphStyle.value} to the clipboard`,
         color: "success",
         icon: "mdi-check",
         timer: 3000,
       });
     },
-    applyDecoration(decorationObj, textStyle) {
-      textStyle.value = `${decorationObj.text}${textStyle.value}${
-        decorationObj.canReverse
-          ? esrever.reverse(decorationObj.text)
-          : decorationObj.text
-      }`;
+    applyDecoration(decorationObj) {
+      const secondDecoration = decorationObj.canReverse
+        ? esrever.reverse(decorationObj.text)
+        : decorationObj.text;
+
+      if (this.replaceDecoration) {
+        this.fullTextValue = `${decorationObj.text}${this.glyphStyle.baseValue}${secondDecoration}`;
+        return;
+      }
+      
+      this.fullTextValue = `${decorationObj.text}${this.glyphStyle.value}${secondDecoration}`;
     },
   },
 };

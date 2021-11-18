@@ -1,34 +1,27 @@
 <template>
-    <v-text-field
-        v-model="inputVal"
-        :rules="rules"
-        :counter="maxLength"
-        :maxlength="maxLength"
-        rounded
-        solo
-        outlined
-        clearable
-        placeholder="Enter your text here and see the magic happens ✨✨"
-      ></v-text-field>
+  <v-text-field
+    v-model="textValue"
+    :rules="rules"
+    :counter="maxLength"
+    :maxlength="maxLength"
+    rounded
+    solo
+    outlined
+    clearable
+    placeholder="Enter your text here and see the magic happens ✨✨"
+  ></v-text-field>
 </template>
 <script>
 export default {
-  props: {
-      value: {
-          type: String,
-          default: ''
-      },
-  },
-
   computed: {
-    inputVal: {
+    textValue: {
       get() {
-        return this.value;
+        return this.$store.state.userText;
       },
-      set(val) {
-        this.$emit('input', val);
-      }
-    }
+      set(value) {
+         this.$store.commit("setUserText", value);
+      },
+    },
   },
 
   data: () => ({
