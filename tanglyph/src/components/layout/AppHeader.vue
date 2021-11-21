@@ -11,8 +11,8 @@
       />
 
       <h3>{{ title }}</h3>
-      <v-divider vertical class="pl-3"></v-divider>
-      <div class="pl-3">
+      <v-divider vertical class="pl-3 hidden-xs-only"></v-divider>
+      <div class="pl-3 hidden-xs-only">
         {{subTitle}}
       </div>
       
