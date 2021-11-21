@@ -24,6 +24,7 @@
         <v-card-text>
           <decoration-input
             :glyphName="style.name"
+            :showReplaceCheckButton="false"
           ></decoration-input>
         </v-card-text>
       </v-card>
@@ -82,6 +83,7 @@ export default {
           mapName: style.map,
         });
         style.baseValue = style.value;
+        
       });
     },
   },

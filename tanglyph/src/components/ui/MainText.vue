@@ -13,6 +13,7 @@
 </template>
 <script>
 export default {
+  name: "main-text",
   computed: {
     textValue: {
       get() {

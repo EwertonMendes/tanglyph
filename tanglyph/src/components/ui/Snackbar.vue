@@ -1,5 +1,5 @@
 <template>
-  <v-snackbar :color="color" :timeout="timer" v-model="showSnackbar" bottom>
+  <v-snackbar transition="slide-x-transition" :color="color" :timeout="timer" v-model="showSnackbar" bottom>
     <v-icon left>{{ icon }}</v-icon
     >{{ message }}
     <template v-slot:action="{ attrs }">

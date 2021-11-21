@@ -29,6 +29,8 @@
 <script>
 import decorations from "../../assets/json/decorations.json";
 export default {
+  name: "decoration-selector",
+  
   data: () => ({
     pageSize: 4,
     decorations: decorations,

@@ -55,7 +55,6 @@ export default {
     },
   },
   watch: {
-    
     isDarkMode(value) {
       this.$cookie.set("darkTheme", value);
       this.$vuetify.theme.isDark = value;
