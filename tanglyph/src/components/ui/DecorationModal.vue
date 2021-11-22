@@ -7,7 +7,13 @@
   >
     <template v-slot:default="dialog">
       <v-card>
-        <v-toolbar color="primary" dark>Decorate Text</v-toolbar>
+        <v-toolbar color="primary" dark>
+          Decorate Text
+          <v-row class="justify-end">
+            <v-btn fab text @click="dialog.value = false">X</v-btn> 
+          </v-row>
+          
+        </v-toolbar>
         <v-container align-self-center="true">
           <v-card-text>
             <main-text></main-text>
