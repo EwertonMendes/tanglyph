@@ -4,6 +4,9 @@
   "header": {
     "languages": "Languages"
   },
+  "footer": {
+    "made-with-love": "Made with ❤️ by"
+  },
   "decoration-input": {
     "copy-to-clipboard": "Copy to clipboard",
     "decorate-text": "Decorate Text",

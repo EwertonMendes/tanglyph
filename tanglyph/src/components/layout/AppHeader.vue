@@ -17,7 +17,7 @@
 
       <h3>{{ title }}</h3>
       <v-divider vertical class="pl-3 hidden-xs-only"></v-divider>
-      <div class="pl-3 hidden-xs-only">
+      <div class="pl-3 hidden-xs-only font-weight-light">
         {{ subTitle }}
       </div>
     </div>
