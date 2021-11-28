@@ -83,7 +83,6 @@ export default {
           mapName: style.map,
         });
         style.baseValue = style.value;
-        
       });
     },
   },
@@ -95,9 +94,16 @@ export default {
     onScroll(e) {
       if (typeof window === "undefined") return;
       const top = window.scrollY || e.target.scrollTop || 0;
-      const limit = Math.max( document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight) - window.innerHeight;
-      
-      this.showBackToTopButton = (top > 20) && (top < (limit - 100));
+      const limit =
+        Math.max(
+          document.body.scrollHeight,
+          document.body.offsetHeight,
+          document.documentElement.clientHeight,
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight
+        ) - window.innerHeight;
+
+      this.showBackToTopButton = top > 20 && top < limit - 100;
     },
     toTop() {
       this.$vuetify.goTo(0);
