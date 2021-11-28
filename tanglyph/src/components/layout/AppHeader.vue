@@ -1,5 +1,10 @@
 <template>
-  <v-app-bar app :color="$vuetify.theme.themes[theme].appBar" elevate-on-scroll class="mb-12">
+  <v-app-bar
+    app
+    :color="$vuetify.theme.themes[theme].appBar"
+    elevate-on-scroll
+    class="mb-12"
+  >
     <div class="d-flex align-center">
       <v-img
         alt="Tanglyph Logo"
@@ -13,19 +18,43 @@
       <h3>{{ title }}</h3>
       <v-divider vertical class="pl-3 hidden-xs-only"></v-divider>
       <div class="pl-3 hidden-xs-only">
-        {{subTitle}}
+        {{ subTitle }}
       </div>
-      
     </div>
 
     <v-spacer></v-spacer>
+    <v-menu offset-y>
+      <template v-slot:activator="{ on }">
+        <v-btn fab text v-on="on">
+          <v-icon>mdi-translate</v-icon>
+        </v-btn>
+      </template>
+      <v-list>
+        <v-subheader>{{$t('header.languages')}}</v-subheader>
+        <v-list-item-group v-model="languageIndex" mandatory color="primary">
+          <v-list-item v-for="lang in langs" :key="lang.code">
+            <v-list-item-avatar>
+              <v-img :src="lang.flagPath" :eager="true"></v-img>
+            </v-list-item-avatar>
+
+            <v-list-item-content>
+              <v-list-item-title v-text="lang.name"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-menu>
     <v-icon class="pa-3">
       {{ themeIcon }}
     </v-icon>
     <v-tooltip bottom>
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on" style="width:min-content;">
-          <v-switch v-model="isDarkMode" color="primary" class="mt-5"></v-switch>
+          <v-switch
+            v-model="isDarkMode"
+            color="primary"
+            class="mt-5"
+          ></v-switch>
         </div>
       </template>
       <span>Change Theme</span>
@@ -43,15 +72,39 @@ export default {
 
   data() {
     return {
-      isDarkMode: this.$cookie.get("darkTheme") === 'true' ? true : false,
+      isDarkMode: this.$cookie.get("darkTheme") === "true" ? true : false,
       title: "Tanglyph",
-      subTitle: "The best and easiest text decorator",
-      themeIcon: '',
+      themeIcon: "",
+      langs: [
+        {
+          name: "English",
+          code: "en",
+          flagPath: require("../../assets/flags/us.svg"),
+        },
+        {
+          name: "Português",
+          code: "pt",
+          flagPath: require("../../assets/flags/br.svg"),
+        },
+      ],
+      selectedItem: 0,
     };
   },
   computed: {
     theme() {
       return this.$vuetify.theme.dark ? "dark" : "light";
+    },
+    subTitle() {
+      return this.$t("sub-title");
+    },
+    languageIndex: {
+      get() {
+        return this.selectedItem;
+      },
+      set(value) {
+        this.selectedItem = value;
+        this.$i18n.locale = this.langs[value].code;
+      },
     },
   },
   watch: {

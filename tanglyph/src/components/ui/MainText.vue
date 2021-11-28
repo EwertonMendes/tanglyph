@@ -8,7 +8,7 @@
     solo
     outlined
     clearable
-    placeholder="Enter your text here and see the magic happens ✨✨"
+    :placeholder=" $t('text-placeholder')"
   ></v-text-field>
 </template>
 <script>

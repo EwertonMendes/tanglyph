@@ -7,7 +7,7 @@
           inset
           v-if="showReplaceCheckButton"
           v-model="replaceDecoration"
-          label="Replace Decoration"
+          :label="$t('decoration-input.replace-decoration')"
         ></v-switch>
       </v-col>
     </v-row>
@@ -34,7 +34,7 @@
                 <v-icon color="orange">mdi-creation</v-icon>
               </v-btn>
             </template>
-            <span>Decorate Text</span>
+            <span>{{$t('decoration-input.decorate-text')}}</span>
           </v-tooltip>
           <v-tooltip top v-if="showCopyButton">
             <template v-slot:activator="{ on, attrs }">
@@ -49,7 +49,7 @@
                 <v-icon>mdi-content-copy</v-icon>
               </v-btn>
             </template>
-            <span>Copy to clipboard</span>
+            <span>{{$t('decoration-input.copy-to-clipboard')}}</span>
           </v-tooltip>
         </v-row>
       </template>
@@ -119,7 +119,7 @@ export default {
     },
     showToast() {
       this.$root.vtoast.show({
-        message: `Copied ${this.glyphStyle.value} to the clipboard`,
+        message: this.$t('decoration-input.copied', { msg: this.glyphStyle.value }),
         color: "success",
         icon: "mdi-check",
         timer: 3000,

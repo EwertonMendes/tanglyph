@@ -4,7 +4,7 @@
     >{{ message }}
     <template v-slot:action="{ attrs }">
       <v-btn :color="closeButtonColor" text v-bind="attrs" @click="showSnackbar = false">
-        Close
+        {{$t('snackbar.close')}}
       </v-btn>
     </template>
   </v-snackbar>

@@ -8,7 +8,7 @@
     <template v-slot:default="dialog">
       <v-card>
         <v-toolbar color="primary" dark>
-          Decorate Text
+          {{$t('decoration-modal.title')}}
           <v-row class="justify-end">
             <v-btn fab text @click="dialog.value = false">X</v-btn> 
           </v-row>
@@ -30,7 +30,7 @@
           ></decoration-selector>
         </v-container>
         <v-card-actions class="justify-end">
-          <v-btn text @click="dialog.value = false">Close</v-btn>
+          <v-btn text @click="dialog.value = false">{{$t('decoration-modal.close')}}</v-btn>
         </v-card-actions>
       </v-card>
     </template>

@@ -1,0 +1,20 @@
+{
+  "text-placeholder": "Enter your text here and see the magic happens ✨✨",
+  "sub-title": "The best and easiest text decorator",
+  "header": {
+    "languages": "Languages"
+  },
+  "decoration-input": {
+    "copy-to-clipboard": "Copy to clipboard",
+    "decorate-text": "Decorate Text",
+    "replace-decoration": "Substituir Decoração",
+    "copied": "Copied {msg} to the clipboard"
+  },
+  "decoration-modal": {
+    "title": "Decorate Text",
+    "close": "Fechar"
+  },
+  "snackbar": {
+    "close": "Fechar"
+  }
+}
