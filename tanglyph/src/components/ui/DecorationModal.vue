@@ -10,7 +10,7 @@
         <v-toolbar color="primary" dark>
           {{$t('decoration-modal.title')}}
           <v-row class="justify-end">
-            <v-btn fab text @click="dialog.value = false">X</v-btn> 
+            <v-btn fab text @click="dialog.value = false" class="font-weight-black">X</v-btn> 
           </v-row>
           
         </v-toolbar>
