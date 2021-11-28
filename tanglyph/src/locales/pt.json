@@ -7,7 +7,7 @@
   "decoration-input": {
     "copy-to-clipboard": "Copiar para a área de transferência",
     "decorate-text": "Decorar Texto",
-    "replace-decoration": "Substituir Decoração",
+    "replace-decoration": "Substituir decoração",
     "copied": "Copiou {msg} para a área de transferência"
   },
   "decoration-modal": {

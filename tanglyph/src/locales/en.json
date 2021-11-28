@@ -7,14 +7,14 @@
   "decoration-input": {
     "copy-to-clipboard": "Copy to clipboard",
     "decorate-text": "Decorate Text",
-    "replace-decoration": "Substituir Decoração",
+    "replace-decoration": "Replace decoration",
     "copied": "Copied {msg} to the clipboard"
   },
   "decoration-modal": {
     "title": "Decorate Text",
-    "close": "Fechar"
+    "close": "Close"
   },
   "snackbar": {
-    "close": "Fechar"
+    "close": "Close"
   }
 }
