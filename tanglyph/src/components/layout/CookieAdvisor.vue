@@ -1,8 +1,7 @@
 <template>
-  <cookie-law theme="dark-lime" buttonText="Got It!">
+  <cookie-law theme="dark-lime" :buttonText="agreeMessage">
     <div slot="message">
-      This website uses cookies to ensure you get the best experience on our
-      website.
+      {{ $t('cookie.message') }}
     </div>
   </cookie-law>
 </template>
@@ -12,5 +11,10 @@ import CookieLaw from "vue-cookie-law";
 
 export default {
   components: { CookieLaw },
+  computed: {
+    agreeMessage() {
+      return this.$t("cookie.accept");
+    }
+  }
 };
 </script>
