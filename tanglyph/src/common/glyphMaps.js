@@ -34,7 +34,7 @@ const _maps = {
 export default {
    
     getLetter({letter, charMap}) {
-        return _maps[charMap][letter];
+        return _maps[charMap][letter] ?? letter;
     },
 
     mapCount() {
