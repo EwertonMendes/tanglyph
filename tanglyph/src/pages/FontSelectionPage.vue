@@ -35,7 +35,6 @@
 <script>
 import DecorationInput from "../components/ui/DecorationInput";
 import MainText from "../components/ui/MainText";
-import helpers from "../common/helpers";
 
 export default {
   components: {
@@ -67,26 +66,7 @@ export default {
       },
     },
   },
-
-  watch: {
-    userText: function(value) {
-      if (!value) {
-        this.styles.forEach((style) => {
-          style.value = "";
-          style.baseValue = "";
-        });
-        return;
-      }
-      this.styles.forEach((style) => {
-        style.value = helpers.convertTextToGlyph({
-          baseText: value,
-          mapName: style.map,
-        });
-        style.baseValue = style.value;
-      });
-    },
-  },
-
+  
   methods: {
     updateUserText(value) {
       this.userText = value;
@@ -108,6 +88,7 @@ export default {
     toTop() {
       this.$vuetify.goTo(0);
     },
+   
   },
 };
 </script>

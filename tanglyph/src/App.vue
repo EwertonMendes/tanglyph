@@ -1,13 +1,15 @@
 <template>
   <v-app :style="{ background: $vuetify.theme.themes[theme].background }">
-    <Header></Header>
-    <v-main>
-      <v-flex ma-5>
-        <!-- toast -->
-        <vtoast ref="vtoast" />
-        <FontSelectionPage></FontSelectionPage>
-      </v-flex>
-    </v-main>
+    <v-container>
+      <Header></Header>
+      <v-main>
+        <v-flex ma-5>
+          <!-- toast -->
+          <vtoast ref="vtoast" />
+          <FontSelectionPage></FontSelectionPage>
+        </v-flex>
+      </v-main>
+    </v-container>
     <Footer></Footer>
     <cookie-advisor></cookie-advisor>
   </v-app>

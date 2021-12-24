@@ -206,6 +206,7 @@ const initialState = () => ({
       appliedDecorations: [],
     },
   ],
+  isTyping: false,
 });
 
 export default new Vuex.Store({
@@ -221,6 +222,9 @@ export default new Vuex.Store({
     },
     setStyleValue(state, { style, value }) {
       style.value = value;
+    },
+    setIsTyping(state, value) {
+      state.isTyping = value;
     },
     setReplaceDecoration(state, value) {
       state.replaceDecoration = value;

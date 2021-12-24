@@ -13,7 +13,7 @@
     </v-row>
 
     <v-divider class="pb-2"></v-divider>
-    <v-text-field :value="fullTextValue" class="pt-3" readonly dense outlined>
+    <v-text-field :value="fullTextValue" class="pt-3" readonly dense outlined :loading="isTyping">
       <template v-slot:append>
         <decoration-modal
           v-model="showModal"
@@ -99,6 +99,9 @@ export default {
       get() {
         return this.glyphStyle.value;
       },
+    },
+    isTyping() {
+      return this.$store.state.isTyping;
     },
 
     // I had to put the replaceDecoration on vuex store because it didn't work as a data property
