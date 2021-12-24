@@ -13,7 +13,14 @@
     </v-row>
 
     <v-divider class="pb-2"></v-divider>
-    <v-text-field :value="fullTextValue" class="pt-3" readonly dense outlined :loading="isTyping">
+    <v-text-field
+      :value="fullTextValue"
+      class="pt-3"
+      readonly
+      dense
+      outlined
+      :loading="isTyping"
+    >
       <template v-slot:append>
         <decoration-modal
           v-model="showModal"
@@ -116,18 +123,31 @@ export default {
   },
   methods: {
     copyText() {
-      navigator.clipboard.writeText(this.glyphStyle.value);
       this.showToast();
+      if (!this.fullTextValue) return;
+      navigator.clipboard.writeText(this.glyphStyle.value);
+    },
+    getToastMessage() {
+      if (!this.fullTextValue)
+        return this.$t("decoration-input.nothing-to-copy");
+
+      return this.$t("decoration-input.copied", {
+        msg:
+          this.glyphStyle.value.length < 20
+            ? this.glyphStyle.value
+            : `${this.glyphStyle.value.slice(0, 20)}...`,
+      });
+    },
+    getToastConfig() {
+      return {
+        message: this.getToastMessage(),
+        color: this.fullTextValue ? "success" : "amber darken-2",
+        icon: this.fullTextValue ? "mdi-check": "mdi-close",
+        timer: 3000,
+      };
     },
     showToast() {
-      this.$root.vtoast.show({
-        message: this.$t("decoration-input.copied", {
-          msg: this.glyphStyle.value,
-        }),
-        color: "success",
-        icon: "mdi-check",
-        timer: 3000,
-      });
+      this.$root.vtoast.show(this.getToastConfig());
     },
     applyDecoration: function(decorationObj) {
       this.$store.dispatch("applyDecorationToStyleText", {

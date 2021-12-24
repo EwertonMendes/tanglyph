@@ -11,7 +11,8 @@
     "copy-to-clipboard": "Copiar para a área de transferência",
     "decorate-text": "Decorar Texto",
     "replace-decoration": "Substituir decoração",
-    "copied": "Copiou {msg} para a área de transferência"
+    "copied": "Copiou {msg} para a área de transferência",
+    "nothing-to-copy": "Não há nada para copiar..."
   },
   "decoration-modal": {
     "title": "Decorar Texto",

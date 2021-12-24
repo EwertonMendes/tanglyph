@@ -11,7 +11,8 @@
     "copy-to-clipboard": "Copy to clipboard",
     "decorate-text": "Decorate Text",
     "replace-decoration": "Replace decoration",
-    "copied": "Copied {msg} to the clipboard"
+    "copied": "Copied {msg} to the clipboard",
+    "nothing-to-copy": "Nothing to copy..."
   },
   "decoration-modal": {
     "title": "Decorate Text",

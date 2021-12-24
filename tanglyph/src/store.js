@@ -7,7 +7,7 @@ Vue.use(Vuex);
 
 const initialState = () => ({
   userText: "",
-  replaceDecoration: false,
+  replaceDecoration: true,
   styles: [
     {
       name: "Future Alien",
