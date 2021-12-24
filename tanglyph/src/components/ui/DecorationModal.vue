@@ -1,6 +1,7 @@
 <template>
   <v-dialog
     v-model="show"
+    :fullscreen="$vuetify.breakpoint.mobile"
     persistent
     transition="dialog-bottom-transition"
     max-width="800"

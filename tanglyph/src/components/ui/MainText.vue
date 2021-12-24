@@ -8,7 +8,7 @@
     solo
     outlined
     clearable
-    :placeholder="$t('text-placeholder')"
+    :placeholder="placeholder"
     @input="isTyping = true"
   >
   </v-text-field>
@@ -27,6 +27,9 @@ export default {
       set(value) {
         this.$store.commit("setUserText", value);
       },
+    },
+    placeholder() {
+      return this.$vuetify.breakpoint.smAndDown ? this.$t('text-placeholder-mobile') : this.$t('text-placeholder')
     },
     styles: {
       get: function() {
