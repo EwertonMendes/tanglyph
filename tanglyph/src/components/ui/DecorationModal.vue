@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     applyDecoration(decorationObj) {
-      this.$emit("decorate", decorationObj);
+      this.$root.$emit("decorate", decorationObj);
     },
   },
 };

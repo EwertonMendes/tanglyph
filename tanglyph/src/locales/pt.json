@@ -12,6 +12,7 @@
     "copy-to-clipboard": "Copiar para a área de transferência",
     "decorate-text": "Decorar Texto",
     "replace-decoration": "Substituir decoração",
+    "replicate-decoration": "Replicar decoração",
     "copied": "Copiou {msg} para a área de transferência",
     "nothing-to-copy": "Não há nada para copiar..."
   },

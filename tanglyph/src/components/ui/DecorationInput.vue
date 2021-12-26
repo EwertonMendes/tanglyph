@@ -9,6 +9,12 @@
           v-model="replaceDecoration"
           :label="$t('decoration-input.replace-decoration')"
         ></v-switch>
+        <v-switch
+          inset
+          v-if="showReplaceCheckButton"
+          v-model="replicateDecoration"
+          :label="$t('decoration-input.replicate-decoration')"
+        ></v-switch>
       </v-col>
     </v-row>
 
@@ -25,7 +31,6 @@
         <decoration-modal
           v-model="showModal"
           :glyphName="glyphName"
-          @decorate="applyDecoration"
         ></decoration-modal>
         <v-tooltip top v-if="showDecorationButton">
           <template v-slot:activator="{ on, attrs }">
@@ -98,6 +103,15 @@ export default {
     },
   },
 
+  mounted() {
+    this.$store.state.currentGlyphName = this.glyphName;
+    this.$root.$on('decorate', this.applyDecoration);
+  },
+
+  beforeDestroy() {  
+    this.$store.state.currentGlyphName = null;
+  },
+
   computed: {
     glyphStyle() {
       return this.$store.getters.getStyleByName(this.glyphName);
@@ -118,6 +132,14 @@ export default {
       },
       set(value) {
         this.$store.commit("setReplaceDecoration", value);
+      },
+    },
+    replicateDecoration: {
+      get() {
+        return this.$store.state.replicateDecoration;
+      },
+      set(value) {
+        this.$store.commit("setReplicateDecoration", value);
       },
     },
   },

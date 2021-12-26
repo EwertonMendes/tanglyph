@@ -8,6 +8,9 @@ Vue.use(Vuex);
 const initialState = () => ({
   userText: "",
   replaceDecoration: true,
+  replicateDecoration: false,
+  isTyping: false,
+  currentGlyphName: null,
   styles: [
     {
       name: "Future Alien",
@@ -206,7 +209,6 @@ const initialState = () => ({
       appliedDecorations: [],
     },
   ],
-  isTyping: false,
 });
 
 export default new Vuex.Store({
@@ -229,6 +231,9 @@ export default new Vuex.Store({
     setReplaceDecoration(state, value) {
       state.replaceDecoration = value;
     },
+    setReplicateDecoration(state, value) {
+      state.replicateDecoration = value;
+    },
     setAppliedDecorations(state, { decorationValueObj, style }) {
       if (state.replaceDecoration) {
         style.appliedDecorations.splice(0, style.appliedDecorations.length);
@@ -238,6 +243,11 @@ export default new Vuex.Store({
   },
   actions: {
     applyDecorationToStyleText({ commit, getters, state },{ decorationValueObj, glyphName }) {
+      
+      if(!state.replicateDecoration  && state.currentGlyphName !== glyphName) {
+        return;
+      }
+
       const style = getters.getStyleByName(glyphName);
 
       const secondDecoration = decorationValueObj.canReverse

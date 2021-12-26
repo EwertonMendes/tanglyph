@@ -29,7 +29,9 @@ export default {
       },
     },
     placeholder() {
-      return this.$vuetify.breakpoint.smAndDown ? this.$t('text-placeholder-mobile') : this.$t('text-placeholder')
+      return this.$vuetify.breakpoint.smAndDown
+        ? this.$t("text-placeholder-mobile")
+        : this.$t("text-placeholder");
     },
     styles: {
       get: function() {
@@ -78,6 +80,7 @@ export default {
           mapName: style.map,
         });
         style.baseValue = style.value;
+        
       });
     },
   },
