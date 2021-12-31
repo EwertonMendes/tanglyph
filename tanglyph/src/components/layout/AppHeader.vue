@@ -140,8 +140,8 @@ export default {
     },
     getThemeIcon() {
       return this.isDarkMode
-        ? "mdi-white-balance-sunny"
-        : "mdi-moon-waning-crescent";
+        ? "mdi-moon-waning-crescent"
+        : "mdi-white-balance-sunny";
     },
   },
 };
