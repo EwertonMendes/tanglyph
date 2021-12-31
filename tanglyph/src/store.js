@@ -243,10 +243,6 @@ export default new Vuex.Store({
   },
   actions: {
     applyDecorationToStyleText({ commit, getters, state },{ decorationValueObj, glyphName }) {
-      
-      if(!state.replicateDecoration  && state.currentGlyphName !== glyphName) {
-        return;
-      }
 
       const style = getters.getStyleByName(glyphName);
 

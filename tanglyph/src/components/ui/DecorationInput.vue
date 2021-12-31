@@ -31,6 +31,7 @@
         <decoration-modal
           v-model="showModal"
           :glyphName="glyphName"
+          @decorate="applyDecoration"
         ></decoration-modal>
         <v-tooltip top v-if="showDecorationButton">
           <template v-slot:activator="{ on, attrs }">
@@ -100,15 +101,14 @@ export default {
     showReplaceCheckButton: {
       type: Boolean,
       default: true,
-    },
+    }
   },
 
   mounted() {
     this.$store.state.currentGlyphName = this.glyphName;
-    this.$root.$on('decorate', this.applyDecoration);
   },
 
-  beforeDestroy() {  
+  beforeDestroy() {
     this.$store.state.currentGlyphName = null;
   },
 
@@ -143,6 +143,7 @@ export default {
       },
     },
   },
+
   methods: {
     copyText() {
       this.showToast();
@@ -164,7 +165,7 @@ export default {
       return {
         message: this.getToastMessage(),
         color: this.fullTextValue ? "success" : "amber darken-2",
-        icon: this.fullTextValue ? "mdi-check": "mdi-close",
+        icon: this.fullTextValue ? "mdi-check" : "mdi-close",
         timer: 3000,
       };
     },
@@ -172,6 +173,21 @@ export default {
       this.$root.vtoast.show(this.getToastConfig());
     },
     applyDecoration: function(decorationObj) {
+      if (this.replicateDecoration) {
+        const allGlyphNames = this.$store.state.styles.map(
+          (style) => style.name
+        );
+
+        allGlyphNames.forEach((glyphName) => {
+          this.$store.dispatch("applyDecorationToStyleText", {
+            decorationValueObj: decorationObj,
+            glyphName: glyphName,
+          });
+        });
+
+        return;
+      }
+
       this.$store.dispatch("applyDecorationToStyleText", {
         decorationValueObj: decorationObj,
         glyphName: this.glyphName,
