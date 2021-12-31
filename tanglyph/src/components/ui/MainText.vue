@@ -46,6 +46,14 @@ export default {
         this.$store.commit("setIsTyping", value);
       },
     },
+    isLoading: {
+      get() {
+        return this.$store.state.isLoading;
+      },
+      set(value) {
+        this.$store.commit("setIsLoading", value);
+      },
+    },
   },
 
   watch: {
@@ -54,6 +62,7 @@ export default {
     }, 500),
 
     isTyping: function(value) {
+      this.isLoading = true;
       if (!value) {
         this.convertMainText();
       }
@@ -72,6 +81,7 @@ export default {
           style.value = "";
           style.baseValue = "";
         });
+        this.isLoading = false;
         return;
       }
       this.styles.forEach((style) => {
@@ -82,6 +92,7 @@ export default {
         style.baseValue = style.value;
         
       });
+      this.isLoading = false;
     },
   },
 };

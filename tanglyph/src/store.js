@@ -10,6 +10,7 @@ const initialState = () => ({
   replaceDecoration: true,
   replicateDecoration: false,
   isTyping: false,
+  isLoading: false,
   currentGlyphName: null,
   styles: [
     {
@@ -227,6 +228,9 @@ export default new Vuex.Store({
     },
     setIsTyping(state, value) {
       state.isTyping = value;
+    },
+    setIsLoading(state, value) {
+      state.isLoading = value;
     },
     setReplaceDecoration(state, value) {
       state.replaceDecoration = value;

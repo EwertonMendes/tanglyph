@@ -25,7 +25,7 @@
       readonly
       dense
       outlined
-      :loading="isTyping"
+      :loading="isLoading"
     >
       <template v-slot:append>
         <decoration-modal
@@ -124,8 +124,8 @@ export default {
         return this.glyphStyle.value;
       },
     },
-    isTyping() {
-      return this.$store.state.isTyping;
+    isLoading() {
+      return this.$store.state.isLoading;
     },
 
     // I had to put the replaceDecoration on vuex store because it didn't work as a data property
