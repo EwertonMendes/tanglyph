@@ -33,7 +33,7 @@
           :glyphName="glyphName"
           @decorate="applyDecoration"
         ></decoration-modal>
-        <v-tooltip top v-if="showDecorationButton">
+        <v-tooltip top v-if="showDecorationButton" :disabled="shouldShowTooltip">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               class="pb-2"
@@ -49,7 +49,7 @@
           </template>
           <span>{{ $t("decoration-input.decorate-text") }}</span>
         </v-tooltip>
-        <v-tooltip top v-if="showCopyButton">
+        <v-tooltip top v-if="showCopyButton" :disabled="shouldShowTooltip">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               class="pb-2"
@@ -113,6 +113,9 @@ export default {
   },
 
   computed: {
+    shouldShowTooltip() {
+      return this.$vuetify.breakpoint.smAndDown;
+    },
     glyphStyle() {
       return this.$store.getters.getStyleByName(this.glyphName);
     },

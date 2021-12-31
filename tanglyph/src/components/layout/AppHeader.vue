@@ -47,7 +47,7 @@
     <v-icon class="pa-3">
       {{ themeIcon }}
     </v-icon>
-    <v-tooltip bottom>
+    <v-tooltip bottom :disabled="shouldShowTooltip">
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on" style="width:min-content;">
           <v-switch
@@ -91,6 +91,9 @@ export default {
     };
   },
   computed: {
+    shouldShowTooltip() {
+      return this.$vuetify.breakpoint.smAndDown;
+    },
     theme() {
       return this.$vuetify.theme.dark ? "dark" : "light";
     },
