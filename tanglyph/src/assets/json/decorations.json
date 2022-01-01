@@ -1,57 +1,142 @@
 [
   {
     "name": "hearts",
-    "template": "💙💜💛🧡❤️️",
-    "canReverse": true
+    "first": "💙💜💛🧡❤️",
+    "second": "❤️🧡💛💜💙"
   },
   {
-    "name": "foods",
-    "template": "🍉🍇🍓🍌",
-    "canReverse": true
+    "name": "hearts 2",
+    "first": "💖💘💞",
+    "second": "💞💘💖"
+  },
+  {
+    "name": "fruits",
+    "first": "🍉🍇🍓🍌",
+    "second": "🍌🍓🍇🍉"
+  },
+  {
+    "name": "video",
+    "first": "📽️🎬📼📹📸",
+    "second": "📸📹📼🎬📽️"
+  },
+  {
+    "name": "beach",
+    "first": "~-<🌴>-~",
+    "second": "~-<🌴>-~"
+  },
+  {
+    "name": "sun",
+    "first": " ~-<☀️>-~",
+    "second": " ~-<☀️>-~"
   },
   {
     "name": "squares",
-    "template": "▀▄▀▄▀▄",
-    "canReverse": true
+    "first": "▀▄▀▄▀▄",
+    "second": "▄▀▄▀▄▀"
+  },
+  {
+    "name": "granular",
+    "first": "░▒▓█",
+    "second": "█▓▒░"
   },
   {
     "name": "bar code",
-    "template": "▌│█║▌║▌║",
-    "canReverse": false
+    "first": "▌│█║▌║▌║",
+    "second": "▌│█║▌║▌║"
+  },
+  {
+    "name": "signs",
+    "first": "《 இ௫న",
+    "second": "இ௫న 》"
+  },
+  {
+    "name": "night sky",
+    "first": "⋆｡˚ ☁︎ ˚｡⋆｡˚☽˚｡⋆",
+    "second": "⋆｡˚☽˚｡⋆｡˚ ☁︎ ˚｡⋆"
+  },
+  {
+    "name": "new year 2022",
+    "first": "꧁₂₀₂₁꧂",
+    "second": "꧁₂₀₂₂꧂"
   },
   {
     "name": "music face",
-    "template": "ღ(¯`◕‿◕´¯) ♫ ♪ ♫",
-    "canReverse": false
+    "first": "ღ(¯`◕‿◕´¯) ♫ ♪ ♫",
+    "second": "♫ ♪ ♫(¯`◕‿◕´¯) ღ"
+  },
+  {
+    "name": "skull",
+    "first": "░▒▒ 💀 ▒▒░",
+    "second": "░▒▒ 💀 ▒▒░"
+  },
+  {
+    "name": "mushrooms",
+    "first": "𓍊𓋼𓍊𓋼𓍊",
+    "second": "𓍊𓋼𓍊𓋼𓍊"
   },
   {
     "name": "tune",
-    "template": "ıllıllı",
-    "canReverse": true
+    "first": "ıllıllı",
+    "second": "ıllıllı"
+  },
+  {
+    "name": "arrows",
+    "first": "↤↤↤↤↤",
+    "second": "↦↦↦↦↦"
+  },
+  {
+    "name": "arrows 2",
+    "first": "↫↫↫↫↫",
+    "second": "↬↬↬↬↬"
+  },
+  {
+    "name": "heartbeat",
+    "first": "ــہہــــ٨ـــــMـــــ❥ــ٨ـــہـــــــ❥ــ٨ــــ",
+    "second": "ــہہــــ٨ـــــMـــــ❥ــ٨ـــہـــــــ❥ــ٨ــــ "
   },
   {
     "name": "flower and dots",
-    "template": "✿◉●•◦",
-    "canReverse": true
+    "first": "✿◉●•◦",
+    "second": "◦•◉●✿"
   },
   {
     "name": "flowers",
-    "template": "✿❀❁❂❃",
-    "canReverse": true
+    "first": "✿❀❁❂❃",
+    "second": "❃❂❀✿"
+  },
+  {
+    "name": "flower arrangement",
+    "first": "꧁ღ╭⊱ꕥ",
+    "second": "ꕥ⊱╮ღ꧂"
+  },
+  {
+    "name": "flower arrangement 2",
+    "first": "꧁✿🌸╭⊱",
+    "second": "⊱╮🌸✿꧂"
+  },
+  {
+    "name": "burtterfly",
+    "first": ".•°*”˜˙·٠•●♥ Ƹ̵̡Ӝ̵̨̄Ʒ ♥●•٠·˙",
+    "second": "˙·٠•●♥ Ƹ̵̡Ӝ̵̨̄Ʒ ♥●•٠·•°°*”˜"
+  },
+  {
+    "name": "chess",
+    "first": "♜♛♝♞",
+    "second": "♖♕♗♘"
   },
   {
     "name": "cubes",
-    "template": "❏   ❐   ❑   ❒",
-    "canReverse": true
+    "first": "❏   ❐   ❑   ❒",
+    "second": "❒   ❑   ❐   ❏"
   },
   {
     "name": "special day",
-    "template": ".•°¤*(¯`★´¯)*¤°",
-    "canReverse": false
+    "first": ".•°¤*(¯`★´¯)*¤°",
+    "second": "°¤*(¯`★´¯)*¤°•."
   },
   {
     "name": "bored",
-    "template": "(-_-)",
-    "canReverse": false
+    "first": "(-_-)",
+    "second": "(-_-)"
   }
 ]

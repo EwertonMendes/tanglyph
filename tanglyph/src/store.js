@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import constants from "./common/constants";
-import { reverse } from "esrever";
 
 Vue.use(Vuex);
 
@@ -250,13 +249,9 @@ export default new Vuex.Store({
 
       const style = getters.getStyleByName(glyphName);
 
-      const secondDecoration = decorationValueObj.canReverse
-        ? reverse(decorationValueObj.text)
-        : decorationValueObj.text;
-
-      const fullText = `${decorationValueObj.text}${
+      const fullText = `${decorationValueObj.first}${
         state.replaceDecoration ? style.baseValue : style.value
-      }${secondDecoration}`;
+      }${decorationValueObj.second}`;
 
       commit("setAppliedDecorations", { decorationValueObj, style });
       commit("setStyleValue", { style, value: fullText });

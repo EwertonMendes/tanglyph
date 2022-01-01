@@ -11,13 +11,15 @@
           <v-col align="center">
             <v-btn
               text
+              block
+              class="btn-text"
               @click="
                 applyDecoration({
-                  text: decoration.template,
-                  canReverse: decoration.canReverse,
+                  first: decoration.first,
+                  second: decoration.second,
                 })
               "
-              >{{ decoration.template }}</v-btn
+              >{{ decoration.first }}</v-btn
             >
           </v-col>
         </v-row>
@@ -48,6 +50,7 @@ export default {
         if (!contents.length) return;
         finalObject.push({ pageNumber: pageNum, contents: contents });
       });
+       console.log(finalObject);
       return finalObject;
     },
   },
