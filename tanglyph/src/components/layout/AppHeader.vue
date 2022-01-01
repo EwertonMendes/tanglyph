@@ -23,27 +23,40 @@
     </div>
 
     <v-spacer></v-spacer>
-    <v-menu offset-y>
-      <template v-slot:activator="{ on }">
-        <v-btn fab text v-on="on">
-          <v-icon>mdi-translate</v-icon>
-        </v-btn>
-      </template>
-      <v-list>
-        <v-subheader>{{$t('header.languages')}}</v-subheader>
-        <v-list-item-group v-model="languageIndex" mandatory color="primary">
-          <v-list-item v-for="lang in langs" :key="lang.code">
-            <v-list-item-avatar>
-              <v-img :src="lang.flagPath" :eager="true"></v-img>
-            </v-list-item-avatar>
 
-            <v-list-item-content>
-              <v-list-item-title v-text="lang.name"></v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-menu>
+    <v-tooltip bottom :disabled="shouldShowTooltip">
+      <template v-slot:activator="{ on, attrs }">
+        <div v-bind="attrs" v-on="on" style="width:min-content;">
+          <v-menu offset-y>
+            <template v-slot:activator="{ on }">
+              <v-btn fab text v-on="on">
+                <v-icon>mdi-translate</v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-subheader>{{ $t("header.languages") }}</v-subheader>
+              <v-list-item-group
+                v-model="languageIndex"
+                mandatory
+                color="primary"
+              >
+                <v-list-item v-for="lang in langs" :key="lang.code">
+                  <v-list-item-avatar>
+                    <v-img :src="lang.flagPath" :eager="true"></v-img>
+                  </v-list-item-avatar>
+
+                  <v-list-item-content>
+                    <v-list-item-title v-text="lang.name"></v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list-item-group>
+            </v-list>
+          </v-menu>
+        </div>
+      </template>
+      <span>{{ $t("header.languages") }}</span>
+    </v-tooltip>
+
     <v-icon class="pa-3">
       {{ themeIcon }}
     </v-icon>
