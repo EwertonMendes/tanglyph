@@ -50,7 +50,6 @@ export default {
         if (!contents.length) return;
         finalObject.push({ pageNumber: pageNum, contents: contents });
       });
-       console.log(finalObject);
       return finalObject;
     },
   },

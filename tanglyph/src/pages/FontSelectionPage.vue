@@ -95,5 +95,6 @@ export default {
 <style scoped>
 .v-card {
   border-left: 5px solid var(--v-primary-base) !important;
+  border-radius: 20px;
 }
 </style>

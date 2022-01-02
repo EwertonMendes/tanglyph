@@ -21,7 +21,7 @@
     <v-divider class="pb-2"></v-divider>
     <v-text-field
       :value="fullTextValue"
-      class="pt-3"
+      class="pt-3 blah"
       readonly
       dense
       outlined
@@ -36,8 +36,8 @@
         <v-tooltip top v-if="showDecorationButton" :disabled="shouldShowTooltip">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
-              class="pb-2"
-              color="primary lighten-2"
+              color="primary lighten-2" 
+              class="teste"
               plain
               text
               v-bind="attrs"
@@ -52,10 +52,10 @@
         <v-tooltip top v-if="showCopyButton" :disabled="shouldShowTooltip">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
-              class="pb-2"
-              color="primary lighten-2"
-              plain
-              text
+            color="primary lighten-2"
+            class="teste"
+            plain
+            text
               @click="copyText()"
               v-bind="attrs"
               v-on="on"
@@ -199,3 +199,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .teste {
+    margin-top: -6px;
+  }
+</style>
