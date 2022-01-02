@@ -37,7 +37,7 @@
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               color="primary lighten-2" 
-              class="teste"
+              class="button"
               plain
               text
               v-bind="attrs"
@@ -53,7 +53,7 @@
           <template v-slot:activator="{ on, attrs }">
             <v-btn
             color="primary lighten-2"
-            class="teste"
+            class="button"
             plain
             text
               @click="copyText()"
@@ -201,7 +201,7 @@ export default {
 </script>
 
 <style scoped>
-  .teste {
+  .button {
     margin-top: -6px;
   }
 </style>
