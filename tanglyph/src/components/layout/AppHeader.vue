@@ -64,6 +64,7 @@
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on" style="width:min-content;">
           <v-switch
+            inset
             v-model="isDarkMode"
             color="primary"
             class="mt-5"
