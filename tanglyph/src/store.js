@@ -256,5 +256,15 @@ export default new Vuex.Store({
       commit("setAppliedDecorations", { decorationValueObj, style });
       commit("setStyleValue", { style, value: fullText });
     },
+    removeDecorationFromStyleText({ commit, getters},{ glyphName }) {
+        
+        const style = getters.getStyleByName(glyphName);
+  
+        const fullText = style.baseValue;
+
+        style.appliedDecorations = [];
+
+        commit("setStyleValue", { style, value: fullText });
+      }
   },
 });

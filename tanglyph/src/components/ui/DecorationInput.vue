@@ -58,6 +58,15 @@
       :loading="isLoading"
     >
       <template v-slot:append>
+        <v-btn
+          class="button"
+          plain
+          fab
+          small
+          @click.stop="clearDecorations"
+        >
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
         <decoration-modal
           v-model="showModal"
           :glyphName="glyphName"
@@ -70,10 +79,11 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
-              color="primary lighten-2"
               class="button"
               plain
               text
+              fab
+              small
               v-bind="attrs"
               v-on="on"
               @click.stop="showModal = true"
@@ -86,15 +96,16 @@
         <v-tooltip top v-if="showCopyButton" :disabled="shouldShowTooltip">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
-              color="primary lighten-2"
               class="button"
               plain
               text
+              fab
+              small
               @click="copyText()"
               v-bind="attrs"
               v-on="on"
             >
-              <v-icon>mdi-content-copy</v-icon>
+              <v-icon color="primary">mdi-content-copy</v-icon>
             </v-btn>
           </template>
           <span>{{ $t("decoration-input.copy-to-clipboard") }}</span>
@@ -230,6 +241,27 @@ export default {
         glyphName: this.glyphName,
       });
     },
+    clearDecorations: function(decorationObj) {
+      if (this.replicateDecoration) {
+        const allGlyphNames = this.$store.state.styles.map(
+          (style) => style.name
+        );
+
+        allGlyphNames.forEach((glyphName) => {
+          this.$store.dispatch("removeDecorationFromStyleText", {
+            decorationValueObj: decorationObj,
+            glyphName: glyphName,
+          });
+        });
+
+        return;
+      }
+
+      this.$store.dispatch("removeDecorationFromStyleText", {
+        decorationValueObj: decorationObj,
+        glyphName: this.glyphName,
+      });
+    },
     handleReplaceDecorationHelp() {
       this.$root.$emit("open-help-modal", {
         title: this.$t("decoration-input.replace-decoration-help.title"),
@@ -248,7 +280,7 @@ export default {
 
 <style scoped>
 .button {
-  margin-top: -6px;
+  margin-top: -8px;
 }
 
 .help-button {
@@ -256,7 +288,6 @@ export default {
   position: fixed;
   margin-left: 250px;
 }
-
 
 .remove-space-between {
   margin-top: -20px;
