@@ -285,7 +285,7 @@ export default {
 
 .help-button {
   margin-top: 15px;
-  position: fixed;
+  position: absolute;
   margin-left: 250px;
 }
 
