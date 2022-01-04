@@ -12,7 +12,15 @@
     "copy-to-clipboard": "Copy to clipboard",
     "decorate-text": "Decorate Text",
     "replace-decoration": "Replace decoration",
+    "replace-decoration-help": {
+      "title": "Replace decoration",
+      "text": "Replaces the current decoration of the text with a new one. This will also remove the current decoration."
+    },
     "replicate-decoration": "Replicate decoration",
+    "replicate-decoration-help": {
+      "title": "Replicate decoration",
+      "text": "Replicates the chosen decoration for all other styles at one time."
+    },
     "copied": "Copied {msg} to the clipboard",
     "nothing-to-copy": "Nothing to copy..."
   },
@@ -26,5 +34,8 @@
   "cookie": {
     "message": "This website uses cookies to ensure you get the best experience on our website.",
     "accept": "Got it!"
+  },
+  "simple-modal": {
+    "accept": "Got It"
   }
 }

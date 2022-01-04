@@ -28,6 +28,7 @@
           ></decoration-input>
         </v-card-text>
       </v-card>
+      <simple-modal v-model="showHelpModal" :title="helpModalConfig.title" :content="helpModalConfig.content"> </simple-modal>
     </v-container>
   </div>
 </template>
@@ -35,21 +36,30 @@
 <script>
 import DecorationInput from "../components/ui/DecorationInput";
 import MainText from "../components/ui/MainText";
+import SimpleModal from "../components/common/SimpleModal";
 
 export default {
   components: {
     DecorationInput,
     MainText,
+    "simple-modal": SimpleModal,
   },
 
   data: () => ({
-    rules: [(value) => (value || "").length <= 50 || "Max 50 characters"],
-    maxLength: 50,
     copiedText: "",
     showNotification: false,
     timeout: 3500,
     showBackToTopButton: false,
+    showHelpModal: false,
+    helpModalConfig: {
+      title: "",
+      content: "",
+    },
   }),
+
+  mounted() {
+    this.$root.$on('open-help-modal', this.openHelpModal)
+  },
 
   computed: {
     userText: {
@@ -88,7 +98,10 @@ export default {
     toTop() {
       this.$vuetify.goTo(0);
     },
-   
+    openHelpModal(config) {
+      this.helpModalConfig = config;
+      this.showHelpModal = true;
+    },
   },
 };
 </script>

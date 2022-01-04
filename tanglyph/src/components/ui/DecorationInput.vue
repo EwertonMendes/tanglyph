@@ -3,25 +3,55 @@
     <v-row>
       <v-col>
         <h3 class="pb-2">{{ glyphStyle.name }}</h3>
-        <v-switch
-          inset
-          v-if="showReplaceCheckButton"
-          v-model="replaceDecoration"
-          :label="$t('decoration-input.replace-decoration')"
-        ></v-switch>
-        <v-switch
-          inset
-          v-if="showReplaceCheckButton"
-          v-model="replicateDecoration"
-          :label="$t('decoration-input.replicate-decoration')"
-        ></v-switch>
+        <v-row v-if="showReplaceCheckButton">
+          <v-switch
+            class="pl-3"
+            inset
+            v-model="replaceDecoration"
+            :label="$t('decoration-input.replace-decoration')"
+          ></v-switch>
+          <v-btn
+            class="help-button"
+            fab
+            x-small
+            text
+            plain
+            @click="handleReplaceDecorationHelp"
+          >
+            <v-icon>
+              mdi-help-rhombus
+            </v-icon>
+          </v-btn>
+        </v-row>
+
+        <v-row v-if="showReplaceCheckButton" class="remove-space-between">
+          <v-switch
+            class="pl-3 pb-2"
+            inset
+            v-if="showReplaceCheckButton"
+            v-model="replicateDecoration"
+            :label="$t('decoration-input.replicate-decoration')"
+          ></v-switch>
+          <v-btn
+            class="help-button"
+            fab
+            x-small
+            text
+            plain
+            @click="handleReplicateDecorationHelp"
+          >
+            <v-icon>
+              mdi-help-rhombus
+            </v-icon>
+          </v-btn>
+        </v-row>
       </v-col>
     </v-row>
 
     <v-divider class="pb-2"></v-divider>
     <v-text-field
       :value="fullTextValue"
-      class="pt-3 blah"
+      class="pt-3"
       readonly
       dense
       outlined
@@ -33,10 +63,14 @@
           :glyphName="glyphName"
           @decorate="applyDecoration"
         ></decoration-modal>
-        <v-tooltip top v-if="showDecorationButton" :disabled="shouldShowTooltip">
+        <v-tooltip
+          top
+          v-if="showDecorationButton"
+          :disabled="shouldShowTooltip"
+        >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
-              color="primary lighten-2" 
+              color="primary lighten-2"
               class="button"
               plain
               text
@@ -52,10 +86,10 @@
         <v-tooltip top v-if="showCopyButton" :disabled="shouldShowTooltip">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
-            color="primary lighten-2"
-            class="button"
-            plain
-            text
+              color="primary lighten-2"
+              class="button"
+              plain
+              text
               @click="copyText()"
               v-bind="attrs"
               v-on="on"
@@ -101,7 +135,7 @@ export default {
     showReplaceCheckButton: {
       type: Boolean,
       default: true,
-    }
+    },
   },
 
   mounted() {
@@ -196,12 +230,35 @@ export default {
         glyphName: this.glyphName,
       });
     },
+    handleReplaceDecorationHelp() {
+      this.$root.$emit("open-help-modal", {
+        title: this.$t("decoration-input.replace-decoration-help.title"),
+        content: this.$t("decoration-input.replace-decoration-help.text"),
+      });
+    },
+    handleReplicateDecorationHelp() {
+      this.$root.$emit("open-help-modal", {
+        title: this.$t("decoration-input.replicate-decoration-help.title"),
+        content: this.$t("decoration-input.replicate-decoration-help.text"),
+      });
+    }
   },
 };
 </script>
 
 <style scoped>
-  .button {
-    margin-top: -6px;
-  }
+.button {
+  margin-top: -6px;
+}
+
+.help-button {
+  margin-top: 15px;
+  position: fixed;
+  margin-left: 250px;
+}
+
+
+.remove-space-between {
+  margin-top: -20px;
+}
 </style>
