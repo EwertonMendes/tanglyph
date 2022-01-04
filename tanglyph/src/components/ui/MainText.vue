@@ -70,8 +70,8 @@ export default {
   },
 
   data: () => ({
-    rules: [(value) => (value || "").length <= 50 || "Max 50 characters"],
-    maxLength: 50,
+    maxLength: 100,
+    rules: [(value) => (value || "").length <= 100 || "Max 100 characters"],
   }),
 
   methods: {
