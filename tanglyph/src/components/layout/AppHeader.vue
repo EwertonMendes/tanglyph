@@ -14,8 +14,8 @@
         transition="scale-transition"
         width="60"
       />
-
-      <h3>{{ title }}</h3>
+      <h1 class="d-none">{{ subTitle }}</h1>
+      <h2>{{ title }}</h2>
       <v-divider vertical class="pl-3 hidden-xs-only"></v-divider>
       <div class="pl-3 hidden-xs-only font-weight-light">
         {{ subTitle }}

@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col>
-        <h3 class="pb-2">{{ glyphStyle.name }}</h3>
+        <h2 class="pb-2">{{ glyphStyle.name }}</h2>
         <v-row v-if="showReplaceCheckButton">
           <v-switch
             class="pl-3"
