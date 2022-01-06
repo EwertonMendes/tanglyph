@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import constants from "./common/constants";
+import helpers from "./common/helpers";
 
 Vue.use(Vuex);
 
@@ -242,11 +243,16 @@ export default new Vuex.Store({
         style.appliedDecorations.splice(0, style.appliedDecorations.length);
       }
       style.appliedDecorations.push(decorationValueObj);
-    }
+    },
+    clearDecorations(state, { style }) {
+      style.appliedDecorations = [];
+    },
   },
   actions: {
-    applyDecorationToStyleText({ commit, getters, state },{ decorationValueObj, glyphName }) {
-
+    applyDecorationToStyleText(
+      { commit, getters, state },
+      { decorationValueObj, glyphName }
+    ) {
       const style = getters.getStyleByName(glyphName);
 
       const fullText = `${decorationValueObj.first}${
@@ -256,15 +262,44 @@ export default new Vuex.Store({
       commit("setAppliedDecorations", { decorationValueObj, style });
       commit("setStyleValue", { style, value: fullText });
     },
-    removeDecorationFromStyleText({ commit, getters},{ glyphName }) {
-        
-        const style = getters.getStyleByName(glyphName);
-  
-        const fullText = style.baseValue;
 
-        style.appliedDecorations = [];
+    reApplyDecorationsToStyleText({ commit, getters }, { glyphName }) {
+      const style = getters.getStyleByName(glyphName);
+      let allDecorationsText = "";
 
-        commit("setStyleValue", { style, value: fullText });
+      if (style.appliedDecorations.length > 0) {
+        const decorationList = [...style.appliedDecorations];
+
+        commit("clearDecorations", { style });
+
+        decorationList.forEach((decoration) => {
+          commit("setAppliedDecorations", {
+            decorationValueObj: {
+              first: decoration.first,
+              second: decoration.second,
+            },
+            style,
+          });
+
+          allDecorationsText = `${decoration.first}${allDecorationsText}${decoration.second}`;
+        });
       }
+
+      const textMiddleIndex = helpers.getMiddleOfString(allDecorationsText) + 1;
+
+      const fullText = allDecorationsText.splice(textMiddleIndex, style.baseValue);
+
+      commit("setStyleValue", { style, value: fullText });
+    },
+
+    removeDecorationFromStyleText({ commit, getters }, { glyphName }) {
+      const style = getters.getStyleByName(glyphName);
+
+      const fullText = style.baseValue;
+
+      commit("clearDecorations", { style });
+
+      commit("setStyleValue", { style, value: fullText });
+    },
   },
 });

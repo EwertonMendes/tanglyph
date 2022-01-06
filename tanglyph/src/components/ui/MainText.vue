@@ -78,6 +78,9 @@ export default {
     convertMainText() {
       if (!this.textValue) {
         this.styles.forEach((style) => {
+          if (style.appliedDecorations.length > 0) {
+            this.$store.commit("clearDecorations", { style });
+          }
           style.value = "";
           style.baseValue = "";
         });
@@ -85,14 +88,29 @@ export default {
         return;
       }
       this.styles.forEach((style) => {
-        style.value = helpers.convertTextToGlyph({
+        const baseText = helpers.convertTextToGlyph({
           baseText: this.textValue,
           mapName: style.map,
         });
-        style.baseValue = style.value;
-        
+
+        style.baseValue = baseText;
+        style.value = baseText;
+        this.applyDecoration();
       });
+
       this.isLoading = false;
+    },
+
+    applyDecoration: function() {
+      const allStylesWithDecorations = this.$store.state.styles.filter(
+        (style) => style.name && style.appliedDecorations.length > 0
+      );
+
+      allStylesWithDecorations.forEach((glyph) => {
+        this.$store.dispatch("reApplyDecorationsToStyleText", {
+          glyphName: glyph.name,
+        });
+      });
     },
   },
 };

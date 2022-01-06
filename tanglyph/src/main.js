@@ -14,6 +14,11 @@ import storePlugin from './plugins/store'
 import i18n from './i18n'
 Vue.use(storePlugin)
 
+
+String.prototype.splice = function(index, str) {
+  return this.substring(0, index) + str + this.substring(index);
+};
+
 new Vue({
   vuetify,
   i18n,

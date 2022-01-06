@@ -87,7 +87,7 @@ export default {
   data() {
     return {
       isDarkMode: this.$cookie.get("darkTheme") === "true" ? true : false,
-      title: "Tanglyph",
+      title: "tanglyph",
       themeIcon: "",
       langs: [
         {
