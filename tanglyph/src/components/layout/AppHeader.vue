@@ -100,8 +100,7 @@ export default {
           code: "pt",
           flagPath: require("../../assets/flags/br.svg"),
         },
-      ],
-      selectedItem: 0,
+      ]
     };
   },
   computed: {
@@ -116,10 +115,9 @@ export default {
     },
     languageIndex: {
       get() {
-        return this.selectedItem;
+        return this.langs.findIndex(language => language.code === this.$i18n.locale);
       },
       set(value) {
-        this.selectedItem = value;
         this.$i18n.locale = this.langs[value].code;
       },
     },
