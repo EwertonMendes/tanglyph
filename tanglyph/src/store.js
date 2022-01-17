@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import constants from "./common/constants";
-import helpers from "./common/helpers";
 
 Vue.use(Vuex);
 
@@ -265,7 +264,8 @@ export default new Vuex.Store({
 
     reApplyDecorationsToStyleText({ commit, getters }, { glyphName }) {
       const style = getters.getStyleByName(glyphName);
-      let allDecorationsText = "";
+
+      let fullText = style.baseValue;
 
       if (style.appliedDecorations.length > 0) {
         const decorationList = [...style.appliedDecorations];
@@ -281,13 +281,9 @@ export default new Vuex.Store({
             style,
           });
 
-          allDecorationsText = `${decoration.first}${allDecorationsText}${decoration.second}`;
+          fullText = `${decoration.first}${fullText}${decoration.second}`;
         });
       }
-
-      const textMiddleIndex = helpers.getMiddleOfString(allDecorationsText) + 1;
-
-      const fullText = allDecorationsText.splice(textMiddleIndex, style.baseValue);
 
       commit("setStyleValue", { style, value: fullText });
     },

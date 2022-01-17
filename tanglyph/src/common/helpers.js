@@ -9,9 +9,5 @@ export default {
       newText += glyphLetter;
     });
     return newText;
-  },
-
-  getMiddleOfString(s) {
-   return s.indexOf(s.substr((s.length - 1) >>> 1, (~s.length & 1) + 1));
-  },
+  }
 };
