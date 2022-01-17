@@ -71,7 +71,7 @@
           ></v-switch>
         </div>
       </template>
-      <span>Change Theme</span>
+      <span>{{ $t("header.change-theme") }}</span>
     </v-tooltip>
   </v-app-bar>
 </template>

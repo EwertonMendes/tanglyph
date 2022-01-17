@@ -3,14 +3,15 @@
   "text-placeholder-mobile": "Enter your text here...",
   "sub-title": "The best and easiest text decorator",
   "header": {
-    "languages": "Languages"
+    "languages": "Languages",
+    "change-theme": "Change theme"
   },
   "footer": {
     "made-with-love": "Made with ❤️ by"
   },
   "decoration-input": {
     "copy-to-clipboard": "Copy to clipboard",
-    "decorate-text": "Decorate Text",
+    "decorate-text": "Decorate text",
     "replace-decoration": "Replace decoration",
     "replace-decoration-help": {
       "title": "Replace decoration",
