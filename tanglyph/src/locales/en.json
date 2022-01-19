@@ -3,6 +3,10 @@
   "text-placeholder-mobile": "Enter your text here...",
   "sub-title": "The best and easiest text decorator",
   "options": "Options",
+  "about": {
+    "title": "About Tanglyph",
+    "description": "Tanglyph is an app that allows you to create styled decorated texts, being ideal for posts on Facebook, Instagram, Twitter, group names for Telegram, Whatsapp and whatever else you can think of. It's simple, complete and free. It is currently still under development, and many improvements are to come. A way to leave your suggestions for improvements, comments and compliments will soon be available. Thanks for using Tanglyph!"
+  },
   "header": {
     "languages": "Languages",
     "change-theme": "Change theme"
