@@ -197,6 +197,7 @@ export default {
       },
       set(value) {
         this.$i18n.locale = this.langs[value].code;
+        document.title = "Tanglyph - " + this.$t("sub-title");
       },
     },
   },
