@@ -39,5 +39,35 @@
   },
   "simple-modal": {
     "accept": "Saquei"
+  },
+  "styles":{
+    "future-alien": "Alienígena",
+    "squiggle1": "Rabiscado 1",
+    "squiggle2": "Rabiscado 2",
+    "squiggle3": "Rabiscado 3",
+    "squiggle4": "Rabiscado 4",
+    "squiggle5": "Rabiscado 5",
+    "squiggle6": "Rabiscado 6",
+    "asian-style1": "Estilo Asiático 1",
+    "asian-style2": "Estilo Asiático 2",
+    "squares": "Quadrados",
+    "inverted-squares": "Quadrados Invertidos",
+    "monospace": "Monoespaçado",
+    "bold": "Negrito",
+    "bold-and-italic": "Negrito e Itálico",
+    "bold-sans": "Negrito Sans",
+    "currency": "Moeda",
+    "symbols": "Símbolos",
+    "greek": "Grego",
+    "ben-text": "Ben Text",
+    "italic": "Itálico",
+    "upper-angles": "Ângulos Superiores",
+    "subscript": "Subscrito",
+    "superscript": "Sobrescrito",
+    "double-struck": "Encrenca Dupla",
+    "medieval": "Medieval",
+    "cursive": "Cursiva",
+    "old-english": "Inglês Antigo",
+    "wide-text": "Texto largo"
   }
 }

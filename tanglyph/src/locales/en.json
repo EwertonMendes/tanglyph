@@ -39,5 +39,35 @@
   },
   "simple-modal": {
     "accept": "Got It"
+  },
+  "styles":{
+    "future-alien": "Future Alien",
+    "squiggle1": "Squiggle 1",
+    "squiggle2": "Squiggle 2",
+    "squiggle3": "Squiggle 3",
+    "squiggle4": "Squiggle 4",
+    "squiggle5": "Squiggle 5",
+    "squiggle6": "Squiggle 6",
+    "asian-style1": "Asian Style 1",
+    "asian-style2": "Asian Style 2",
+    "squares": "Squares",
+    "inverted-squares": "Inverted Squares",
+    "monospace": "Monospace",
+    "bold": "Bold",
+    "bold-and-italic": "Bold and Italic",
+    "bold-sans": "Bold Sans",
+    "currency": "Currency",
+    "symbols": "Symbols",
+    "greek": "Greek",
+    "ben-text": "Ben Text",
+    "italic": "Italic",
+    "upper-angles": "Upper Angles",
+    "subscript": "Subscript",
+    "superscript": "Superscript",
+    "double-struck": "Double Struck",
+    "medieval": "Medieval",
+    "cursive": "Cursive",
+    "old-english": "Old English",
+    "wide-text": "Wide Text"
   }
 }
