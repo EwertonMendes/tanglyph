@@ -197,8 +197,8 @@ export default {
       },
       set(value) {
         this.$i18n.locale = this.langs[value].code;
-        document.title = "Tanglyph - " + this.$t("sub-title");
         this.$store.commit("refreshStylesName");
+        document.title = "Tanglyph - " + this.$t("sub-title");
       },
     },
   },
@@ -216,6 +216,7 @@ export default {
 
   mounted() {
     this.changeFont();
+    document.title = "Tanglyph - " + this.$t("sub-title");
   },
 
   methods: {

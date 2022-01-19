@@ -34,7 +34,10 @@ const _maps = {
 export default {
    
     getLetter({letter, charMap}) {
-        return _maps[charMap][letter] ?? letter;
+        if(!_maps[charMap][letter]) {
+            return _maps[charMap][letter.toLowerCase()] ?? letter
+        }
+        return _maps[charMap][letter];
     },
 
     mapCount() {
